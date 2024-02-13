@@ -15,6 +15,7 @@
 		A4C646D22B747481000E0DA7 /* TMDBUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646D12B747481000E0DA7 /* TMDBUITests.swift */; };
 		A4C646D42B747481000E0DA7 /* TMDBUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646D32B747481000E0DA7 /* TMDBUITestsLaunchTests.swift */; };
 		A4C646E12B7A91CE000E0DA7 /* MovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646E02B7A91CE000E0DA7 /* MovieView.swift */; };
+		A4C646E32B7BC625000E0DA7 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646E22B7BC625000E0DA7 /* ScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		A4C646D12B747481000E0DA7 /* TMDBUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBUITests.swift; sourceTree = "<group>"; };
 		A4C646D32B747481000E0DA7 /* TMDBUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TMDBUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A4C646E02B7A91CE000E0DA7 /* MovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieView.swift; sourceTree = "<group>"; };
+		A4C646E22B7BC625000E0DA7 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				A4C646B62B74747F000E0DA7 /* TMDBApp.swift */,
 				A4C646B82B74747F000E0DA7 /* ContentView.swift */,
 				A4C646E02B7A91CE000E0DA7 /* MovieView.swift */,
+				A4C646E22B7BC625000E0DA7 /* ScoreView.swift */,
 				A4C646BA2B747481000E0DA7 /* Assets.xcassets */,
 				A4C646BC2B747481000E0DA7 /* Preview Content */,
 			);
@@ -261,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4C646B92B74747F000E0DA7 /* ContentView.swift in Sources */,
+				A4C646E32B7BC625000E0DA7 /* ScoreView.swift in Sources */,
 				A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */,
 				A4C646E12B7A91CE000E0DA7 /* MovieView.swift in Sources */,
 			);

@@ -9,18 +9,23 @@ import SwiftUI
 
 struct MovieView: View {
     var body: some View {
-        VStack(spacing: 24) {
-            Image("dune-backdrop")
-                .resizable()
-                .scaledToFit()
-                .padding(.top, 0.4)
-                .padding(.horizontal, 0.4)
-                .clipShape(
-                    .rect(
-                        topLeadingRadius: 4,
-                        topTrailingRadius: 4
+        VStack(spacing: 16) {
+            ZStack(alignment: .bottomLeading) {
+                Image("dune-backdrop")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.top, 0.4)
+                    .padding(.horizontal, 0.4)
+                    .clipShape(
+                        .rect(
+                            topLeadingRadius: 4,
+                            topTrailingRadius: 4
+                        )
                     )
-                )
+
+                ScoreView(progress: 0.25)
+                    .offset(x: 8, y: 15)
+            }
 
             VStack(alignment: .leading) {
                 Text("They Shot the Piano Player")
