@@ -9,7 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        MovieView()
+        ScrollView(.horizontal){
+            HStack {
+                MovieView()
+                MovieView()
+                MovieView()
+                MovieView()
+            }
+            .padding()
+        }
     }
 }
 

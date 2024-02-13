@@ -9,34 +9,44 @@ import SwiftUI
 
 struct MovieView: View {
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(spacing: 24) {
             Image("dune-backdrop")
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
+                .padding(.top, 0.4)
+                .padding(.horizontal, 0.4)
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 4,
+                        topTrailingRadius: 4
+                    )
+                )
 
             VStack(alignment: .leading) {
                 Text("They Shot the Piano Player")
-                    .font(.system(size: 8))
+                    .font(.caption)
                     .fontWeight(.heavy)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text("Jul 26, 2024")
-                    .font(.system(size: 8))
-                    .foregroundStyle(.black .opacity(0.7))
+                    .font(.caption)
+                    .foregroundStyle(.primary.opacity(0.7))
             }
-            .padding(4)
+            .padding(8)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 3))
+        .frame(width: 160)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+
         .background(
-            RoundedRectangle(cornerRadius: 3)
-                .stroke(.gray,lineWidth: 0.2)
+            RoundedRectangle(cornerRadius: 10)
+                .stroke(.gray.opacity(0.5), lineWidth: 0.5)
         )
     }
 }
 
 #Preview(
     "Movie View",
-    traits: .fixedLayout(width: 110, height: 200)
+    traits: .sizeThatFitsLayout
 ) {
     MovieView()
         .padding(8)
