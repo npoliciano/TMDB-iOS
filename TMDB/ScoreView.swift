@@ -12,16 +12,16 @@ struct ScoreView: View {
     
     var ringColor: Color {
         if let score, score < 0.4 {
-            return Color(red: 201/255, green: 56/255, blue: 97/255)
+            return Colors.red
         } else if let score, score < 0.7 {
-            return Color(red: 190/255, green: 192/255, blue: 76/255)
+            return Colors.yellow
         } else {
-            return Color(red: 99/255, green: 205/255, blue: 130/255)
+            return Colors.green
         }
     }
 
-    private let backgroundColor = Color(red: 13/255, green: 28/255, blue: 33/255)
-    private let notRatedRingColor = Color(red: 102/255, green: 102/255, blue: 102/255)
+    private let backgroundColor = Colors.darkBlue
+    private let notRatedRingColor = Colors.gray
 
     var body: some View {
         ZStack {
