@@ -9,7 +9,17 @@ import SwiftUI
 
 struct ScoreView: View {
     let progress: Double?
-    private let ringColor = Color(red: 99/255, green: 205/255, blue: 130/255)
+    
+    var ringColor: Color {
+        if let progress, progress < 0.4 {
+            return Color(red: 201/255, green: 56/255, blue: 97/255)
+        } else if let progress, progress < 0.7 {
+            return Color(red: 190/255, green: 192/255, blue: 76/255)
+        } else {
+            return Color(red: 99/255, green: 205/255, blue: 130/255)
+        }
+    }
+
     private let backgroundColor = Color(red: 13/255, green: 28/255, blue: 33/255)
     private let notRatedRingColor = Color(red: 102/255, green: 102/255, blue: 102/255)
 
@@ -61,7 +71,7 @@ struct ScoreView: View {
 }
 
 #Preview (
-    "Movie View",
+    "Score View",
     traits: .fixedLayout(width: 100, height: 100)
 )
 {

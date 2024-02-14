@@ -23,7 +23,7 @@ struct MovieView: View {
                         )
                     )
 
-                ScoreView(progress: 0.25)
+                ScoreView(progress: 0.5)
                     .offset(x: 8, y: 15)
             }
 
