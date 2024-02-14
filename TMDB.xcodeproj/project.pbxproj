@@ -19,6 +19,8 @@
 		A4C646E62B7C5ECB000E0DA7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A4C646E52B7C5ECB000E0DA7 /* Kingfisher */; };
 		A4D8DE132B7D11A200C31D7F /* SeeAllView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE122B7D11A200C31D7F /* SeeAllView.swift */; };
 		A4D8DE152B7D170700C31D7F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE142B7D170700C31D7F /* Colors.swift */; };
+		A4D8DE172B7D1A7900C31D7F /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */; };
+		A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE182B7D204700C31D7F /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		A4C646E22B7BC625000E0DA7 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		A4D8DE122B7D11A200C31D7F /* SeeAllView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllView.swift; sourceTree = "<group>"; };
 		A4D8DE142B7D170700C31D7F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		A4D8DE182B7D204700C31D7F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,12 +110,14 @@
 			children = (
 				A4C646B62B74747F000E0DA7 /* TMDBApp.swift */,
 				A4C646B82B74747F000E0DA7 /* ContentView.swift */,
+				A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */,
 				A4C646E02B7A91CE000E0DA7 /* MovieView.swift */,
 				A4C646E22B7BC625000E0DA7 /* ScoreView.swift */,
 				A4D8DE122B7D11A200C31D7F /* SeeAllView.swift */,
 				A4D8DE142B7D170700C31D7F /* Colors.swift */,
 				A4C646BA2B747481000E0DA7 /* Assets.xcassets */,
 				A4C646BC2B747481000E0DA7 /* Preview Content */,
+				A4D8DE182B7D204700C31D7F /* Movie.swift */,
 			);
 			path = TMDB;
 			sourceTree = "<group>";
@@ -281,7 +287,9 @@
 				A4D8DE152B7D170700C31D7F /* Colors.swift in Sources */,
 				A4C646B92B74747F000E0DA7 /* ContentView.swift in Sources */,
 				A4C646E32B7BC625000E0DA7 /* ScoreView.swift in Sources */,
+				A4D8DE172B7D1A7900C31D7F /* CarouselView.swift in Sources */,
 				A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */,
+				A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */,
 				A4C646E12B7A91CE000E0DA7 /* MovieView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
