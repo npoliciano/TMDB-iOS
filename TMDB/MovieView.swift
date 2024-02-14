@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct MovieView: View {
+    let title: String
+    let score: Double?
+    let releaseDate: String
+
     var body: some View {
         VStack(spacing: 16) {
             ZStack(alignment: .bottomLeading) {
@@ -23,17 +27,17 @@ struct MovieView: View {
                         )
                     )
 
-                ScoreView(progress: 0.5)
+                ScoreView(score: score)
                     .offset(x: 8, y: 15)
             }
 
             VStack(alignment: .leading) {
-                Text("They Shot the Piano Player")
+                Text(title)
                     .font(.caption)
                     .fontWeight(.heavy)
                     .lineLimit(1)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                Text("Jul 26, 2024")
+                Text(releaseDate)
                     .font(.caption)
                     .foregroundStyle(.primary.opacity(0.7))
             }
@@ -53,7 +57,7 @@ struct MovieView: View {
     "Movie View",
     traits: .sizeThatFitsLayout
 ) {
-    MovieView()
+    MovieView(title: "Dune Part II", score: 0.5, releaseDate: "Feb 09, 2024")
         .padding(8)
 }
 

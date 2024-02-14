@@ -11,10 +11,10 @@ struct ContentView: View {
     var body: some View {
         ScrollView(.horizontal){
             HStack {
-                MovieView()
-                MovieView()
-                MovieView()
-                MovieView()
+                MovieView(title: "Dune Part II", score: 0.5, releaseDate: "Feb 09, 2024")
+                MovieView(title: "Dune Part II", score: 0.8, releaseDate: "Feb 09, 2024")
+                MovieView(title: "Dune Part II", score: nil, releaseDate: "Feb 09, 2024")
+                MovieView(title: "Dune Part II", score: 0.2, releaseDate: "Feb 09, 2024")
             }
             .padding()
         }

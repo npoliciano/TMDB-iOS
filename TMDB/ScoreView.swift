@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ScoreView: View {
-    let progress: Double?
+    let score: Double?
     
     var ringColor: Color {
-        if let progress, progress < 0.4 {
+        if let score, score < 0.4 {
             return Color(red: 201/255, green: 56/255, blue: 97/255)
-        } else if let progress, progress < 0.7 {
+        } else if let score, score < 0.7 {
             return Color(red: 190/255, green: 192/255, blue: 76/255)
         } else {
             return Color(red: 99/255, green: 205/255, blue: 130/255)
@@ -27,14 +27,14 @@ struct ScoreView: View {
         ZStack {
             Circle()
                 .stroke(
-                    progress != nil 
+                    score != nil 
                         ? ringColor.opacity(0.5)
                         : notRatedRingColor,
                     lineWidth: 2
                 )
-            if let progress {
+            if let score {
                 Circle()
-                    .trim(from: 0, to: progress)
+                    .trim(from: 0, to: score)
                     .stroke(
                         ringColor,
                         style: StrokeStyle(
@@ -43,7 +43,7 @@ struct ScoreView: View {
                         )
                     )
                     .rotationEffect(.degrees(-90))
-                Text(String(Int(progress*100)))
+                Text(String(Int(score*100)))
                     .font(.caption)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
@@ -75,6 +75,6 @@ struct ScoreView: View {
     traits: .fixedLayout(width: 100, height: 100)
 )
 {
-    ScoreView(progress: nil)
+    ScoreView(score: nil)
         .padding()
 }
