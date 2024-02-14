@@ -6,20 +6,25 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieView: View {
     let title: String
     let score: Double?
     let releaseDate: String
+    let backdropURL: URL
 
     var body: some View {
         VStack(spacing: 16) {
             ZStack(alignment: .bottomLeading) {
-                Image("dune-backdrop")
+                KFImage(backdropURL)
+                    .fade(duration: 0.25)
                     .resizable()
                     .scaledToFit()
+                    .frame(height: 240)
                     .padding(.top, 0.4)
                     .padding(.horizontal, 0.4)
+                    .background(.gray.opacity(0.2))
                     .clipShape(
                         .rect(
                             topLeadingRadius: 4,
@@ -57,7 +62,12 @@ struct MovieView: View {
     "Movie View",
     traits: .sizeThatFitsLayout
 ) {
-    MovieView(title: "Dune Part II", score: 0.5, releaseDate: "Feb 09, 2024")
-        .padding(8)
+    MovieView(
+        title: "Dune Part II",
+        score: 0.5,
+        releaseDate: "Feb 09, 2024",
+        backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!
+    )
+    .padding(8)
 }
 
