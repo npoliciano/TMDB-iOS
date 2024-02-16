@@ -12,6 +12,7 @@ extension Bundle {
         guard let path = Bundle.main.path(forResource: "TMDB_Info", ofType: "plist") else {
             return ""
         }
+
         let plist = try? NSDictionary(contentsOf: URL(fileURLWithPath: path), error: ())
 
         return plist?["apiKey"] as? String ?? ""
