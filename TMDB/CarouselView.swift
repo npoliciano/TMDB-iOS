@@ -20,7 +20,7 @@ struct CarouselView: View {
                     .frame(width: 200,height: 20)
                     .padding(.leading)
                     .padding(.bottom, 10)
-            } else {
+            } else if !movies.isEmpty {
                 Text(title)
                     .font(.title2)
                     .fontWeight(.bold)
