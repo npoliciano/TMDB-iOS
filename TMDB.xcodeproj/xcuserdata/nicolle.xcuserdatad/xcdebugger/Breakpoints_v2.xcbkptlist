@@ -14,9 +14,9 @@
             filePath = "TMDB/MoviesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "getMovies()"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "getNowPlayingMovies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,9 +30,9 @@
             filePath = "TMDB/MoviesViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
-            landmarkName = "getMovies()"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "getNowPlayingMovies()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

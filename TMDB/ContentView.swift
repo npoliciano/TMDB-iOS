@@ -11,9 +11,8 @@ struct ContentView: View {
     var body: some View {
         ScrollView(.vertical) {
             VStack(spacing: 32) {
-                CarouselView(title: "Discover")
-                CarouselView(title: "Upcoming")
-                CarouselView(title: "Featured")
+                NowPlayingCarouselView()
+                UpcomingCarouselView()
             }
         }
     }

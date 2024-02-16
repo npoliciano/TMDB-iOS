@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct CarouselView: View {
-    @ObservedObject var viewModel = MoviesViewModel()
     let title: String
-    
+    let isLoading: Bool
+    let movies: [Movie]
+
     var body: some View {
         VStack(alignment: .leading) {
-            if viewModel.isLoading {
+            if isLoading {
                 RoundedRectangle(cornerRadius: 10)
                     .fill(.gray.opacity(0.3))
                     .frame(width: 200,height: 20)
@@ -28,15 +29,15 @@ struct CarouselView: View {
 
             ScrollView(.horizontal) {
                 HStack(alignment: .top, spacing: 20) {
-                    if viewModel.isLoading {
+                    if isLoading {
                         ForEach(0...10, id: \.self) { _ in
                             MovieSkeletonView()
                         }
                     } else {
-                        ForEach(viewModel.movies) { movie in
+                        ForEach(movies) { movie in
                             MovieView(movie: movie)
                         }
-                        if !viewModel.movies.isEmpty {
+                        if !movies.isEmpty {
                             VStack {
                                 Spacer()
                                 SeeAllView()
@@ -48,16 +49,13 @@ struct CarouselView: View {
                 .padding(.horizontal)
             }
             .scrollIndicators(.hidden)
-            .allowsHitTesting(!viewModel.isLoading)
-        }
-        .onAppear() {
-            viewModel.getMovies()
+            .allowsHitTesting(!isLoading)
         }
     }
 }
 
 #Preview {
     CarouselView(
-        title: "Discover"
+        title: "Discover", isLoading: true, movies: []
     )
 }
