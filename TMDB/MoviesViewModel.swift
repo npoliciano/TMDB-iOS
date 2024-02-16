@@ -9,8 +9,10 @@ import Foundation
 
 class MoviesViewModel: ObservableObject {
     @Published var movies: [Movie] = []
+    @Published var isLoading = false
 
     func getMovies() {
+        isLoading = true
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")!
         var request = URLRequest(url: url)
 
@@ -58,7 +60,8 @@ class MoviesViewModel: ObservableObject {
                                 backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/\(movieJson.posterPath)")!
                             )
                         }
-                        DispatchQueue.main.async {
+                        DispatchQueue.main.async {//asyncAfter(deadline: .now() + 2) {
+                            self.isLoading = false
                             self.movies = movies
                         }
                     } catch {

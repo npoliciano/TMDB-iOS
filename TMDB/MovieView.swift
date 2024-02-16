@@ -19,39 +19,27 @@ struct MovieView: View {
                     .resizable()
                     .scaledToFit()
                     .frame(height: 240)
-                    .padding(.top, 0.4)
-                    .padding(.horizontal, 0.4)
                     .background(.gray.opacity(0.2))
-                    .clipShape(
-                        .rect(
-                            topLeadingRadius: 4,
-                            topTrailingRadius: 4
-                        )
-                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
 
                 ScoreView(score: movie.score)
-                    .offset(x: 8, y: 15)
+                    .offset(x: 12, y: 15)
             }
 
             VStack(alignment: .leading) {
                 Text(movie.title)
                     .font(.caption)
                     .fontWeight(.heavy)
-                    .lineLimit(1)
+                    .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(movie.releaseDate)
                     .font(.caption)
                     .foregroundStyle(.primary.opacity(0.7))
             }
-            .padding(8)
+            .padding(.leading, 12)
+            .padding([.vertical, .trailing], 8)
         }
         .frame(width: 160)
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-
-        .background(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(.gray.opacity(0.5), lineWidth: 0.5)
-        )
     }
 }
 
