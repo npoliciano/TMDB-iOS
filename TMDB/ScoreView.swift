@@ -11,9 +11,9 @@ struct ScoreView: View {
     let score: Double?
     
     var ringColor: Color {
-        if let score, score < 0.4 {
+        if let score, score < 4 {
             return Colors.red
-        } else if let score, score < 0.7 {
+        } else if let score, score < 7 {
             return Colors.yellow
         } else {
             return Colors.green
@@ -43,7 +43,7 @@ struct ScoreView: View {
                         )
                     )
                     .rotationEffect(.degrees(-90))
-                Text(String(Int(score*100)))
+                Text(String(Int(score*10)))
                     .font(.caption)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)

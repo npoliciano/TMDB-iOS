@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct CarouselView: View {
+    @ObservedObject var viewModel = MoviesViewModel()
     let title: String
-    let list: [Movie]
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(title)
@@ -19,7 +20,7 @@ struct CarouselView: View {
 
             ScrollView(.horizontal) {
                 HStack {
-                    ForEach(list) { movie in
+                    ForEach(viewModel.movies) { movie in
                         MovieView(movie: movie)
                     }
                     SeeAllView()
@@ -28,16 +29,14 @@ struct CarouselView: View {
             }
             .scrollIndicators(.hidden)
         }
+        .onAppear() {
+            viewModel.getMovies()
+        }
     }
 }
 
 #Preview {
     CarouselView(
-        title: "Discover", list: [
-            Movie(title: "Dune Part II", score: 0.5, releaseDate: "Feb 09, 2024", backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/ldfCF9RhR40mppkzmftxapaHeTo.jpg")!),
-            Movie(title: "Dune Part II", score: 0.8, releaseDate: "Feb 09, 2024", backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/AcoVfiv1rrWOmAdpnAMnM56ki19.jpg")!),
-            Movie(title: "Dune Part II", score: nil, releaseDate: "Feb 09, 2024", backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!),
-            Movie(title: "Dune Part II", score: 0.2, releaseDate: "Feb 09, 2024", backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!)
-        ]
+        title: "Discover"
     )
 }
