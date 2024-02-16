@@ -13,7 +13,10 @@ struct ContentView: View {
             VStack(spacing: 32) {
                 NowPlayingCarouselView()
                 UpcomingCarouselView()
+                PopularCarouselView()
+                TopRatedCarouselView()
             }
+            .padding(.bottom, 16)
         }
     }
 }

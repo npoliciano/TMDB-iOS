@@ -14,6 +14,12 @@ class MoviesViewModel: ObservableObject {
     @Published var upcomingMovies: [Movie] = []
     @Published var isLoadingUpcoming = false
 
+    @Published var popularMovies: [Movie] = []
+    @Published var isLoadingPopular = false
+
+    @Published var topRatedMovies: [Movie] = []
+    @Published var isLoadingTopRated = false
+
     private func getMovies(url: URL, completion: @escaping ([Movie]?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -87,10 +93,30 @@ class MoviesViewModel: ObservableObject {
     func getNowPlayingMovies() {
         isLoadingNowPlaying = true
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")!
-        
+
         getMovies(url: url) { movies in
             self.isLoadingNowPlaying = false
             self.nowPlayingMovies = movies ?? []
+        }
+    }
+
+    func getPopularMovies() {
+        isLoadingPopular = true
+        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")!
+
+        getMovies(url: url) { movies in
+            self.isLoadingPopular = false
+            self.popularMovies = movies ?? []
+        }
+    }
+
+    func getTopRatedMovies() {
+        isLoadingTopRated = true
+        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1")!
+
+        getMovies(url: url) { movies in
+            self.isLoadingTopRated = false
+            self.topRatedMovies = movies ?? []
         }
     }
 }
