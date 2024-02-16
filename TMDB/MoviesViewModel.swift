@@ -23,7 +23,7 @@ class MoviesViewModel: ObservableObject {
 
         let headers = [
             "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MzEyMTA2OTNlNzQyODIxNTQ3YWNiZjA0NDNhYWQ1YSIsInN1YiI6IjY1Y2EzMWU2MjY2Nzc4MDE2MzU4YjE4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nzD-8uhSCI6Rr0x46xm0aNQeLNlwKb2EX2DnlyI_mdA"
+            "Authorization": Bundle.apiKey
         ]
 
         request.allHTTPHeaderFields = headers
@@ -86,7 +86,7 @@ class MoviesViewModel: ObservableObject {
         
         let headers = [
             "accept": "application/json",
-            "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MzEyMTA2OTNlNzQyODIxNTQ3YWNiZjA0NDNhYWQ1YSIsInN1YiI6IjY1Y2EzMWU2MjY2Nzc4MDE2MzU4YjE4MiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.nzD-8uhSCI6Rr0x46xm0aNQeLNlwKb2EX2DnlyI_mdA"
+            "Authorization": Bundle.apiKey
         ]
 
         request.allHTTPHeaderFields = headers
