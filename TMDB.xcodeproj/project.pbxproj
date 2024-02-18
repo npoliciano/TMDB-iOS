@@ -101,6 +101,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A41074852B81A48600C2CB0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A4C646B82B74747F000E0DA7 /* ContentView.swift */,
+				A410747B2B7FCE6700C2CB0E /* CarouselsView.swift */,
+				A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */,
+				A4C646E02B7A91CE000E0DA7 /* MovieView.swift */,
+				A41074792B7FC31A00C2CB0E /* MovieSkeletonView.swift */,
+				A4C646E22B7BC625000E0DA7 /* ScoreView.swift */,
+				A4D8DE122B7D11A200C31D7F /* SeeAllView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A41074862B81A4C700C2CB0E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A4D8DE182B7D204700C31D7F /* Movie.swift */,
+				A41074752B7E630500C2CB0E /* NowPlayingJSON.swift */,
+				A41074772B7E671400C2CB0E /* MoviesViewModel.swift */,
+				A41074812B819BF400C2CB0E /* MovieListViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A41074872B81A4EC00C2CB0E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A4D8DE142B7D170700C31D7F /* Colors.swift */,
+				A410747F2B7FD71900C2CB0E /* Bundle+Extensions.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		A41074882B81A50600C2CB0E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A41074832B81A13900C2CB0E /* MoviesAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		A4C646AA2B74747F000E0DA7 = {
 			isa = PBXGroup;
 			children = (
@@ -125,20 +167,10 @@
 			isa = PBXGroup;
 			children = (
 				A4C646B62B74747F000E0DA7 /* TMDBApp.swift */,
-				A4C646B82B74747F000E0DA7 /* ContentView.swift */,
-				A410747B2B7FCE6700C2CB0E /* CarouselsView.swift */,
-				A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */,
-				A4C646E02B7A91CE000E0DA7 /* MovieView.swift */,
-				A41074792B7FC31A00C2CB0E /* MovieSkeletonView.swift */,
-				A4C646E22B7BC625000E0DA7 /* ScoreView.swift */,
-				A4D8DE122B7D11A200C31D7F /* SeeAllView.swift */,
-				A4D8DE142B7D170700C31D7F /* Colors.swift */,
-				A4D8DE182B7D204700C31D7F /* Movie.swift */,
-				A41074752B7E630500C2CB0E /* NowPlayingJSON.swift */,
-				A41074772B7E671400C2CB0E /* MoviesViewModel.swift */,
-				A41074812B819BF400C2CB0E /* MovieListViewModel.swift */,
-				A41074832B81A13900C2CB0E /* MoviesAPI.swift */,
-				A410747F2B7FD71900C2CB0E /* Bundle+Extensions.swift */,
+				A41074852B81A48600C2CB0E /* Views */,
+				A41074862B81A4C700C2CB0E /* Models */,
+				A41074882B81A50600C2CB0E /* API */,
+				A41074872B81A4EC00C2CB0E /* Helpers */,
 				A4C646BA2B747481000E0DA7 /* Assets.xcassets */,
 				A4C646BC2B747481000E0DA7 /* Preview Content */,
 				A410747D2B7FD68600C2CB0E /* TMDB_Info.plist */,
