@@ -22,7 +22,7 @@ struct MovieView: View {
                     .background(.gray.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
 
-                ScoreView(score: movie.score)
+                ScoreView(size: .compact, score: movie.score)
                     .offset(x: 12, y: 15)
             }
 

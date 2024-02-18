@@ -7,7 +7,13 @@
 
 import SwiftUI
 
+enum ScoreViewSize {
+    case compact
+    case regular
+}
+
 struct ScoreView: View {
+    let size: ScoreViewSize
     let score: Double?
     
     var ringColor: Color {
@@ -22,6 +28,21 @@ struct ScoreView: View {
 
     private let backgroundColor = Colors.darkBlue
     private let notRatedRingColor = Colors.gray
+    private var dimension: CGFloat {
+        size == .compact ? 30 : 40
+    }
+    private var scoreFont: Font {
+        size == .compact ? .caption : .body
+    }
+    private var percentFontSize: CGFloat {
+        size == .compact ? 5 : 8
+    }
+    private var borderWidth: CGFloat {
+        size == .compact ? 5 : 7
+    }
+    private var ringWidth: CGFloat {
+        size == .compact ? 2 : 3
+    }
 
     var body: some View {
         ZStack {
@@ -30,40 +51,43 @@ struct ScoreView: View {
                     score != nil 
                         ? ringColor.opacity(0.5)
                         : notRatedRingColor,
-                    lineWidth: 2
+                    lineWidth: ringWidth
                 )
             if let score {
                 Circle()
-                    .trim(from: 0, to: score)
+                    .trim(from: 0, to: score/10)
                     .stroke(
                         ringColor,
                         style: StrokeStyle(
-                            lineWidth: 2,
+                            lineWidth: ringWidth,
                             lineCap: .round
                         )
                     )
                     .rotationEffect(.degrees(-90))
                 Text(String(Int(score*10)))
-                    .font(.caption)
+                    .font(scoreFont)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
                 + Text("%")
-                    .font(.system(size: 5))
+                    .font(.system(size: percentFontSize))
                     .foregroundStyle(.white)
                     .baselineOffset(6.0)
             } else {
                 Text("NR")
-                    .font(.caption)
+                    .font(scoreFont)
                     .fontWeight(.bold)
                     .foregroundStyle(.white)
             }
         }
-        .frame(width: 30, height: 30)
+        .frame(
+            width: dimension,
+            height: dimension
+        )
         .background(
             Circle()
                 .stroke(
                     backgroundColor,
-                    lineWidth: 5
+                    lineWidth: borderWidth
                 )
                 .fill(backgroundColor)
         )
@@ -75,6 +99,6 @@ struct ScoreView: View {
     traits: .fixedLayout(width: 100, height: 100)
 )
 {
-    ScoreView(score: nil)
+    ScoreView(size: .regular, score: 7)
         .padding()
 }
