@@ -50,7 +50,8 @@ class MoviesAPI {
                                 title: movieJson.title,
                                 score: movieJson.voteAverage,
                                 releaseDate: formattedDate,
-                                backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/\(movieJson.posterPath)")!
+                                backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/\(movieJson.backdropPath)")!,
+                                posterURL: URL(string: "https://image.tmdb.org/t/p/w780/\(movieJson.posterPath)")!
                             )
                         }
                         DispatchQueue.main.async {

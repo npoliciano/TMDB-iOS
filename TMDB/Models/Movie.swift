@@ -13,4 +13,5 @@ struct Movie: Identifiable {
     let score: Double?
     let releaseDate: String
     let backdropURL: URL
+    let posterURL: URL
 }

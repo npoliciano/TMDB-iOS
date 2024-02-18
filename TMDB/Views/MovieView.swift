@@ -14,7 +14,7 @@ struct MovieView: View {
     var body: some View {
         VStack(spacing: 16) {
             ZStack(alignment: .bottomLeading) {
-                KFImage(movie.backdropURL)
+                KFImage(movie.posterURL)
                     .fade(duration: 0.25)
                     .resizable()
                     .scaledToFit()
@@ -50,8 +50,9 @@ struct MovieView: View {
     MovieView(movie: Movie(
         title: "Dune Part II",
         score: 0.5,
-        releaseDate: "Feb 09, 2024",
-        backdropURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!))
+        releaseDate: "Feb 09, 2024", 
+        backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!,
+        posterURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!))
     .padding(8)
 }
 

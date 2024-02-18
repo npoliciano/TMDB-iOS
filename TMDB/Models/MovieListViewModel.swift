@@ -17,7 +17,7 @@ class MovieListViewModel: ObservableObject {
         self.selectedList = selectedList
     }
 
-    func getUpcomingMovies() {
+    func getMovies() {
         isLoading = true
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedList)?language=en-US&page=1")!
