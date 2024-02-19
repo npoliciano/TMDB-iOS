@@ -12,6 +12,7 @@ struct TMDBApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .tint(Colors.accent)
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct Movie: Identifiable {
     let id = UUID()
     let title: String
-    let score: Double?
+    let score: Double
     let releaseDate: String
     let backdropURL: URL
     let posterURL: URL

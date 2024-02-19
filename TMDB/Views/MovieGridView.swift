@@ -9,9 +9,9 @@ import SwiftUI
 
 struct MovieGridView: View {
     @ObservedObject var viewModel: MovieListViewModel
+    private let minimumCellWidth = 300.0
 
     func columns(for screenWidth: CGFloat) -> [GridItem] {
-        let minimumCellWidth = 300.0
         let count = Int(screenWidth / minimumCellWidth)
         return Array(
             repeating: GridItem(.flexible(), spacing: 16, alignment: .top),
@@ -22,12 +22,20 @@ struct MovieGridView: View {
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                LazyVGrid(columns: columns(for: proxy.size.width), spacing: 32) {
-                    ForEach(viewModel.movies) { movie in
-                        MovieBackdropView(movie: movie)
+                VStack(alignment: .leading, spacing: 48) {
+                    Text(viewModel.title)
+                        .font(.largeTitle)
+                        .fontWeight(.heavy)
+                        .foregroundStyle(Colors.accent)
+
+                    LazyVGrid(columns: columns(for: proxy.size.width), spacing: 32) {
+                        ForEach(viewModel.movies) { movie in
+                            MovieBackdropView(movie: movie)
+                        }
                     }
                 }
                 .padding()
+
             }
             .onAppear {
                 viewModel.getMovies()
@@ -37,5 +45,5 @@ struct MovieGridView: View {
 }
 
 #Preview {
-    MovieGridView(viewModel: MovieListViewModel(selectedList: "popular"))
+    MovieGridView(viewModel: MovieListViewModel(selectedList: .nowPlaying))
 }

@@ -11,7 +11,6 @@ import SwiftUI
 enum Colors {
     static let accent = LinearGradient(
         colors: [
-            Color(red: 191/255, green: 248/255, blue: 206/255),
             Color(red: 104/255, green: 212/255, blue: 173/255),
             Color(red: 113/255, green: 177/255, blue: 212/255),
             Color(red: 79/255, green: 144/255, blue: 233/255)

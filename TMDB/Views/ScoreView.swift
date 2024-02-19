@@ -14,12 +14,12 @@ enum ScoreViewSize {
 
 struct ScoreView: View {
     let size: ScoreViewSize
-    let score: Double?
+    let score: Double
     
     var ringColor: Color {
-        if let score, score < 4 {
+        if score < 4 {
             return Colors.red
-        } else if let score, score < 7 {
+        } else if score < 7 {
             return Colors.yellow
         } else {
             return Colors.green
@@ -48,12 +48,12 @@ struct ScoreView: View {
         ZStack {
             Circle()
                 .stroke(
-                    score != nil 
+                    score != 0
                         ? ringColor.opacity(0.5)
                         : notRatedRingColor,
                     lineWidth: ringWidth
                 )
-            if let score {
+            if score != 0 {
                 Circle()
                     .trim(from: 0, to: score/10)
                     .stroke(

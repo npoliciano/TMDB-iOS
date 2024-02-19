@@ -9,11 +9,16 @@ import SwiftUI
 
 struct NowPlayingCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
+    let onSeeAllTap: () -> Void
+
     var body: some View {
         CarouselView(
             title: "Now Playing",
             isLoading: viewModel.isLoadingNowPlaying,
-            movies: viewModel.nowPlayingMovies
+            movies: viewModel.nowPlayingMovies, 
+            onSeeAllTap: {
+                onSeeAllTap()
+            }
         )
         .onAppear() {
             viewModel.getNowPlayingMovies()
@@ -23,11 +28,16 @@ struct NowPlayingCarouselView: View {
 
 struct UpcomingCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
+    let onSeeAllTap: () -> Void
+
     var body: some View {
         CarouselView(
             title: "Upcoming",
             isLoading: viewModel.isLoadingUpcoming,
-            movies: viewModel.upcomingMovies
+            movies: viewModel.upcomingMovies, 
+            onSeeAllTap: {
+                onSeeAllTap()
+            }
         )
         .onAppear() {
             viewModel.getUpcomingMovies()
@@ -37,11 +47,16 @@ struct UpcomingCarouselView: View {
 
 struct PopularCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
+    let onSeeAllTap: () -> Void
+
     var body: some View {
         CarouselView(
             title: "Popular",
             isLoading: viewModel.isLoadingPopular,
-            movies: viewModel.popularMovies
+            movies: viewModel.popularMovies, 
+            onSeeAllTap: {
+                onSeeAllTap()
+            }
         )
         .onAppear() {
             viewModel.getPopularMovies()
@@ -51,11 +66,16 @@ struct PopularCarouselView: View {
 
 struct TopRatedCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
+    let onSeeAllTap: () -> Void
+
     var body: some View {
         CarouselView(
             title: "Top Rated",
             isLoading: viewModel.isLoadingTopRated,
-            movies: viewModel.topRatedMovies
+            movies: viewModel.topRatedMovies, 
+            onSeeAllTap: {
+                onSeeAllTap()
+            }
         )
         .onAppear() {
             viewModel.getTopRatedMovies()
@@ -65,5 +85,5 @@ struct TopRatedCarouselView: View {
 
 
 #Preview {
-    NowPlayingCarouselView()
+    NowPlayingCarouselView(onSeeAllTap: {})
 }

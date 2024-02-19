@@ -11,6 +11,7 @@ struct CarouselView: View {
     let title: String
     let isLoading: Bool
     let movies: [Movie]
+    let onSeeAllTap: () -> Void
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -41,6 +42,9 @@ struct CarouselView: View {
                             VStack {
                                 Spacer()
                                 SeeAllView()
+                                    .onTapGesture {
+                                        onSeeAllTap()
+                                    }
                                 Spacer()
                             }
                         }
@@ -56,6 +60,6 @@ struct CarouselView: View {
 
 #Preview {
     CarouselView(
-        title: "Discover", isLoading: true, movies: []
+        title: "Discover", isLoading: true, movies: [], onSeeAllTap: {}
     )
 }
