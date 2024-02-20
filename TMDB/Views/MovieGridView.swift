@@ -11,31 +11,41 @@ struct MovieGridView: View {
     @ObservedObject var viewModel: MovieListViewModel
     private let minimumCellWidth = 300.0
 
-    func columns(for screenWidth: CGFloat) -> [GridItem] {
-        let count = Int(screenWidth / minimumCellWidth)
-        return Array(
-            repeating: GridItem(.flexible(), spacing: 16, alignment: .top),
-            count: count
-        )
+    func columns(for screenWidth: CGFloat) -> Int {
+        Int(screenWidth / minimumCellWidth)
+    }
+
+    func rows(for columns: Int) -> Int {
+        guard columns > 0 else {
+            return 0
+        }
+        return Int(ceil(Double(viewModel.movies.count) / Double(columns)))
     }
 
     var body: some View {
         GeometryReader { proxy in
             ScrollView {
-                VStack(alignment: .leading, spacing: 48) {
+                VStack(alignment: .leading) {
                     Text(viewModel.title)
                         .font(.largeTitle)
                         .fontWeight(.heavy)
                         .foregroundStyle(Colors.accent)
+                        .padding([.top, .leading, .trailing])
 
-                    LazyVGrid(columns: columns(for: proxy.size.width), spacing: 32) {
-                        ForEach(viewModel.movies) { movie in
-                            MovieBackdropView(movie: movie)
+                    Grid {
+                        let columns = columns(for: proxy.size.width)
+                        let rows = rows(for: columns)
+                        ForEach(0 ..< rows, id: \.self) { row in
+                            GridRow {
+                                ForEach(0 ..< columns, id: \.self) { column in
+                                    let index = row * columns + column
+                                    MovieBackdropView(movie: viewModel.movies[index])
+                                        .padding()
+                                }
+                            }
                         }
                     }
                 }
-                .padding()
-
             }
             .onAppear {
                 viewModel.getMovies()
