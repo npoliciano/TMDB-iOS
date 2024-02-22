@@ -47,6 +47,7 @@ class MoviesAPI {
                             let formattedDate = dateFormatter.string(from: movieJson.releaseDate)
 
                             return Movie(
+                                id: movieJson.id,
                                 title: movieJson.title,
                                 score: movieJson.voteAverage,
                                 releaseDate: formattedDate,

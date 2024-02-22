@@ -11,7 +11,7 @@ struct CarouselView: View {
     let title: String
     let isLoading: Bool
     let movies: [Movie]
-    let onSeeAllTap: () -> Void
+    let selectedList: SelectedList
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -36,15 +36,22 @@ struct CarouselView: View {
                         }
                     } else {
                         ForEach(movies) { movie in
-                            MovieView(movie: movie)
+                            NavigationLink {
+                                Text("Details")
+                            } label: {
+                                MovieView(movie: movie)
+                            }
+                            .buttonStyle(PlainButtonStyle())
                         }
                         if !movies.isEmpty {
                             VStack {
                                 Spacer()
-                                SeeAllView()
-                                    .onTapGesture {
-                                        onSeeAllTap()
-                                    }
+                                NavigationLink {
+                                    MovieGridView(viewModel: MovieListViewModel(selectedList: selectedList))
+                                } label: {
+                                    SeeAllView()
+                                }
+                                .buttonStyle(PlainButtonStyle())
                                 Spacer()
                             }
                         }
@@ -60,6 +67,9 @@ struct CarouselView: View {
 
 #Preview {
     CarouselView(
-        title: "Discover", isLoading: true, movies: [], onSeeAllTap: {}
+        title: "Discover",
+        isLoading: true,
+        movies: [],
+        selectedList: .nowPlaying
     )
 }

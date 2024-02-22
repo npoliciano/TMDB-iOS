@@ -28,8 +28,8 @@ struct MovieView: View {
 
             VStack(alignment: .leading) {
                 Text(movie.title)
-                    .font(.caption)
-                    .fontWeight(.heavy)
+                    .font(.callout)
+                    .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Text(movie.releaseDate)
@@ -47,12 +47,16 @@ struct MovieView: View {
     "Movie View",
     traits: .sizeThatFitsLayout
 ) {
-    MovieView(movie: Movie(
-        title: "Dune Part II",
-        score: 0.5,
-        releaseDate: "Feb 09, 2024", 
-        backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!,
-        posterURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!))
+    MovieView(
+        movie: Movie(
+            id: 0,
+            title: "Dune Part II",
+            score: 0.5,
+            releaseDate: "Feb 09, 2024",
+            backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!,
+            posterURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!
+        )
+    )
     .padding(8)
 }
 

@@ -41,10 +41,12 @@ struct MovieBackdropView: View {
 #Preview {
     MovieBackdropView(
         movie: Movie(
+            id: 0,
             title: "Dune Part II",
             score: 0.5,
             releaseDate: "Feb 09, 2024",
-            backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!, 
+            backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!,
+            
             posterURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!
         )
     )
