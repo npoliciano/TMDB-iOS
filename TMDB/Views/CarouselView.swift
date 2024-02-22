@@ -41,7 +41,7 @@ struct CarouselView: View {
                             } label: {
                                 MovieView(movie: movie)
                             }
-                            .buttonStyle(PlainButtonStyle())
+                            .buttonStyle(.plain)
                         }
                         if !movies.isEmpty {
                             VStack {
@@ -51,7 +51,8 @@ struct CarouselView: View {
                                 } label: {
                                     SeeAllView()
                                 }
-                                .buttonStyle(PlainButtonStyle())
+                                .buttonStyle(.plain)
+
                                 Spacer()
                             }
                         }

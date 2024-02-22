@@ -39,8 +39,13 @@ struct MovieGridView: View {
                             GridRow {
                                 ForEach(0 ..< columns, id: \.self) { column in
                                     let index = row * columns + column
-                                    MovieBackdropView(movie: viewModel.movies[index])
-                                        .padding()
+                                    NavigationLink {
+                                        Text("Details")
+                                    } label: {
+                                        MovieBackdropView(movie: viewModel.movies[index])
+                                            .padding()
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                         }
