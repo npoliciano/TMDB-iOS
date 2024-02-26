@@ -1,5 +1,5 @@
 //
-//  NowPlayingJSON.swift
+//  MovieListJSON.swift
 //  TMDB
 //
 //  Created by Nicolle on 15/02/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NowPlayingJSON: Decodable {
+struct MovieListJSON: Decodable {
     let page: Int
     let results: [MovieJSON]
     let totalPages: Int
