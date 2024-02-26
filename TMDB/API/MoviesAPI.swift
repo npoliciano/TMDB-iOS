@@ -8,6 +8,57 @@
 import Foundation
 
 class MoviesAPI {
+    func getMovieDetails(url: URL, completion: @escaping (MovieDetails?) -> Void) {
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let headers = [
+            "accept": "application/json",
+            "Authorization": Bundle.apiKey
+        ]
+        request.allHTTPHeaderFields = headers
+
+        let session = URLSession.shared
+        let dataTask = session.dataTask(
+            with: request,
+            completionHandler: {
+                (data, response, error) -> Void in
+                if (error != nil) {
+                    DispatchQueue.main.async {
+                        completion(nil)
+                    }
+                    return
+                }
+
+                if let httpResponse = response as? HTTPURLResponse,
+                   httpResponse.statusCode == 200,
+
+                    let data {
+                    let decoder = JSONDecoder()
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd"
+                    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    do {
+                        let json = try decoder.decode(MovieDetailsJSON.self, from: data)
+                        print(json)
+                        let movieDetails = MovieDetails(title: json.title)
+                        DispatchQueue.main.async {
+                            completion(movieDetails)
+                        }
+                    } catch {
+                        print(error)
+                        DispatchQueue.main.async {
+                            completion(nil)
+                        }
+                    }
+                }
+            }
+        )
+
+        dataTask.resume()
+    }
+
     func getMovies(url: URL, completion: @escaping ([Movie]?) -> Void) {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -41,7 +92,7 @@ class MoviesAPI {
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
                         let json = try decoder.decode(NowPlayingJSON.self, from: data)
-                        print(json)
+
                         let movies = json.results.map { movieJson in
                             dateFormatter.dateFormat = "MMM dd, yyyy"
                             let formattedDate = dateFormatter.string(from: movieJson.releaseDate)
