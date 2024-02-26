@@ -59,7 +59,26 @@ class MoviesAPI {
     func getMovieDetails(url: URL, completion: @escaping (MovieDetails?) -> Void) {
         requestDecodable(url: url) { (json: MovieDetailsJSON?) in
             if let json {
-                let movieDetails = MovieDetails(title: json.title)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let releaseDate = dateFormatter.string(from: json.releaseDate)
+                dateFormatter.dateFormat = "yyyy"
+                let releaseYear = dateFormatter.string(from: json.releaseDate)
+
+                let movieDetails = MovieDetails(
+                    title: json.title,
+                    genres: json.genres
+                        .map { $0.name }
+                        .joined(separator: ", "),
+                    backdropURL: URL(string: "https://image.tmdb.org/t/p/w1280/\(json.backdropPath)")!,
+                    posterURL: URL(string: "https://image.tmdb.org/t/p/w500/\(json.posterPath)")!,
+                    overview: json.overview,
+                    releaseDate: releaseDate,
+                    releaseYear: releaseYear,
+                    runtime: "",
+                    tagline: json.tagline,
+                    voteAverage: json.voteAverage
+                )
                 completion(movieDetails)
             } else {
                 completion(nil)
