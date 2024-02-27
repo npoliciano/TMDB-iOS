@@ -65,6 +65,12 @@ class MoviesAPI {
                 dateFormatter.dateFormat = "yyyy"
                 let releaseYear = dateFormatter.string(from: json.releaseDate)
 
+                let interval = json.runtime * 60
+                let formatter = DateComponentsFormatter()
+                formatter.allowedUnits = [.hour, .minute]
+                formatter.unitsStyle = .abbreviated
+                let runtime = formatter.string(from: TimeInterval(interval))!
+
                 let movieDetails = MovieDetails(
                     title: json.title,
                     genres: json.genres
@@ -75,7 +81,7 @@ class MoviesAPI {
                     overview: json.overview,
                     releaseDate: releaseDate,
                     releaseYear: releaseYear,
-                    runtime: "",
+                    runtime: runtime,
                     tagline: json.tagline,
                     voteAverage: json.voteAverage
                 )
