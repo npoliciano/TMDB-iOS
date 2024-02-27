@@ -29,12 +29,6 @@ class MoviesViewModel: ObservableObject {
             self.isLoadingUpcoming = false
             self.upcomingMovies = movies ?? []
         }
-
-        // Test:
-        let url2 = URL(string: "https://api.themoviedb.org/3/movie/438631?language=en-US")!
-        api.getMovieDetails(url: url2) { _ in
-
-        }
     }
 
     func getNowPlayingMovies() {
