@@ -10,6 +10,7 @@ import Kingfisher
 
 struct MovieDetailsView: View {
     @ObservedObject var viewModel: MovieDetailsViewModel
+    @State var backgroundColor = Color(uiColor: .systemBackground)
 
     var body: some View {
         ScrollView {
@@ -26,6 +27,11 @@ struct MovieDetailsView: View {
                         KFImage(movieDetails.posterURL)
                             .fade(duration: 0.25)
                             .resizable()
+                            .onSuccess({ result in
+                                if let predominantColor = result.image.predominantColor() {
+                                    backgroundColor = predominantColor
+                                }
+                            })
                             .scaledToFit()
                             .frame(height: 180)
                             .background(.gray.opacity(0.2))
@@ -35,12 +41,16 @@ struct MovieDetailsView: View {
                     }
                     .frame(height: 240)
 
-                    Text(movieDetails.title)
-                        .font(.title)
-                        .fontWeight(.medium)
-                    + Text(" (\(movieDetails.releaseYear))")
-                        .font(.title3)
-                        .fontWeight(.light)
+                    Group {
+                        Text(movieDetails.title)
+                            .font(.title)
+                            .fontWeight(.medium)
+
+                        + Text(" (\(movieDetails.releaseYear))")
+                            .font(.title3)
+                            .fontWeight(.light)
+                    }
+                    .multilineTextAlignment(.center)
 
                     HStack(spacing: 30) {
                         ScoreView(size: .regular, score: movieDetails.voteAverage)
@@ -72,17 +82,18 @@ struct MovieDetailsView: View {
                     .background(.black.opacity(0.1))
 
                     VStack(alignment: .leading, spacing: 16) {
-                        Text(movieDetails.tagline)
-                            .italic()
-                            .font(.headline)
-                            .fontWeight(.light)
+                        if !movieDetails.tagline.isEmpty {
+                            Text(movieDetails.tagline)
+                                .italic()
+                                .font(.headline)
+                                .fontWeight(.light)
+                        }
 
-                        Text("Overview")
-                            .font(.title2)
-                            .fontWeight(.bold)
+                            Text("Overview")
+                                .font(.title2)
+                                .fontWeight(.bold)
 
-                        Text(movieDetails.overview)
-
+                            Text(movieDetails.overview)
                     }
                     .padding()
 
@@ -91,9 +102,7 @@ struct MovieDetailsView: View {
             }
         }
         .foregroundStyle(.white)
-        .background(
-            Color(red: 104/255, green: 136/255, blue: 137/255)
-        )
+        .background(backgroundColor)
         .onAppear {
             viewModel.getMovieDetails()
         }

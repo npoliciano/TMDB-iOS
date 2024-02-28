@@ -21,6 +21,7 @@
 		A4B068992B8C107500E292DC /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B068982B8C107500E292DC /* MovieDetails.swift */; };
 		A4B0689B2B8D7EFB00E292DC /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0689A2B8D7EFB00E292DC /* MovieDetailsViewModel.swift */; };
 		A4B0689D2B8D85ED00E292DC /* MovieDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0689C2B8D85ED00E292DC /* MovieDetailsView.swift */; };
+		A4B0689F2B8EC97700E292DC /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0689E2B8EC97700E292DC /* UIImage+Extensions.swift */; };
 		A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646B62B74747F000E0DA7 /* TMDBApp.swift */; };
 		A4C646B92B74747F000E0DA7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4C646B82B74747F000E0DA7 /* ContentView.swift */; };
 		A4C646BB2B747481000E0DA7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A4C646BA2B747481000E0DA7 /* Assets.xcassets */; };
@@ -70,6 +71,7 @@
 		A4B068982B8C107500E292DC /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		A4B0689A2B8D7EFB00E292DC /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		A4B0689C2B8D85ED00E292DC /* MovieDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsView.swift; sourceTree = "<group>"; };
+		A4B0689E2B8EC97700E292DC /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		A4C646B32B74747F000E0DA7 /* TMDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4C646B62B74747F000E0DA7 /* TMDBApp.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = TMDBApp.swift; sourceTree = "<group>"; tabWidth = 4; };
 		A4C646B82B74747F000E0DA7 /* ContentView.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; tabWidth = 4; };
@@ -150,6 +152,7 @@
 			children = (
 				A4D8DE142B7D170700C31D7F /* Colors.swift */,
 				A410747F2B7FD71900C2CB0E /* Bundle+Extensions.swift */,
+				A4B0689E2B8EC97700E292DC /* UIImage+Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				A4D8DE172B7D1A7900C31D7F /* CarouselView.swift in Sources */,
 				A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */,
 				A410748E2B82B97200C2CB0E /* MovieGridView.swift in Sources */,
+				A4B0689F2B8EC97700E292DC /* UIImage+Extensions.swift in Sources */,
 				A4B0689D2B8D85ED00E292DC /* MovieDetailsView.swift in Sources */,
 				A41074842B81A13900C2CB0E /* MoviesAPI.swift in Sources */,
 				A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */,
