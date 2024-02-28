@@ -40,7 +40,7 @@ struct MovieGridView: View {
                                 ForEach(0 ..< columns, id: \.self) { column in
                                     let index = row * columns + column
                                     NavigationLink {
-                                        Text("Details")
+                                        MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
                                     } label: {
                                         MovieBackdropView(movie: viewModel.movies[index])
                                             .padding()

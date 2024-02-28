@@ -37,7 +37,7 @@ struct CarouselView: View {
                     } else {
                         ForEach(movies) { movie in
                             NavigationLink {
-                                Text("Details")
+                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movie.id))
                             } label: {
                                 MovieView(movie: movie)
                             }

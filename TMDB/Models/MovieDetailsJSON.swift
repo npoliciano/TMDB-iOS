@@ -48,7 +48,7 @@ struct GenreJSON: Decodable {
 
 struct ProductionCompanyJSON: Decodable {
     let id: Int
-    let logoPath: String
+    let logoPath: String?
     let name: String
     let originCountry: String
 }
