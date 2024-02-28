@@ -101,6 +101,17 @@ struct MovieDetailsView: View {
                 }
             }
         }
+        .toolbarBackground(Colors.navigationBar, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image(.tmdbLogo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .padding(8)
+            }
+        }
+        .toolbarBackground(.visible, for: .navigationBar)
         .foregroundStyle(.white)
         .background(backgroundColor)
         .onAppear {

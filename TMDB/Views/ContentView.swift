@@ -19,6 +19,19 @@ struct ContentView: View {
                 }
                 .padding(.bottom, 16)
             }
+            .padding(.top)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image(.tmdbLogo)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100)
+                        .padding(8)
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Colors.navigationBar, for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
 
     }

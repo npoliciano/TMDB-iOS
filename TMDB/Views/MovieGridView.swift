@@ -27,9 +27,8 @@ struct MovieGridView: View {
             ScrollView {
                 VStack(alignment: .leading) {
                     Text(viewModel.title)
-                        .font(.largeTitle)
-                        .fontWeight(.heavy)
-                        .foregroundStyle(Colors.accent)
+                        .font(.title2)
+                        .fontWeight(.bold)
                         .padding([.top, .leading, .trailing])
 
                     Grid {
@@ -39,13 +38,15 @@ struct MovieGridView: View {
                             GridRow {
                                 ForEach(0 ..< columns, id: \.self) { column in
                                     let index = row * columns + column
-                                    NavigationLink {
-                                        MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
-                                    } label: {
-                                        MovieBackdropView(movie: viewModel.movies[index])
-                                            .padding()
+                                    if index < viewModel.movies.count {
+                                        NavigationLink {
+                                            MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
+                                        } label: {
+                                            MovieBackdropView(movie: viewModel.movies[index])
+                                                .padding()
+                                        }
+                                        .buttonStyle(.plain)
                                     }
-                                    .buttonStyle(.plain)
                                 }
                             }
                         }
@@ -56,6 +57,17 @@ struct MovieGridView: View {
                 viewModel.getMovies()
             }
         }
+        .toolbarBackground(Colors.navigationBar, for: .navigationBar)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image(.tmdbLogo)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100)
+                    .padding(8)
+            }
+        }
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 

@@ -23,4 +23,6 @@ enum Colors {
     static let green = Color(red: 99/255, green: 205/255, blue: 130/255)
     static let darkBlue = Color(red: 13/255, green: 28/255, blue: 33/255)
     static let gray = Color(red: 102/255, green: 102/255, blue: 102/255)
+
+    static let navigationBar = Color(red: 13/255, green: 33/255, blue: 64/255)
 }
