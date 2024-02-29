@@ -36,6 +36,8 @@
 		A4D8DE152B7D170700C31D7F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE142B7D170700C31D7F /* Colors.swift */; };
 		A4D8DE172B7D1A7900C31D7F /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */; };
 		A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE182B7D204700C31D7F /* Movie.swift */; };
+		A4EA34FC2B900ED100E6DD3E /* CreditsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */; };
+		A4EA34FE2B9010E000E6DD3E /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA34FD2B9010E000E6DD3E /* Actor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,8 @@
 		A4D8DE142B7D170700C31D7F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		A4D8DE162B7D1A7900C31D7F /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		A4D8DE182B7D204700C31D7F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsJSON.swift; sourceTree = "<group>"; };
+		A4EA34FD2B9010E000E6DD3E /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,8 @@
 				A4B068982B8C107500E292DC /* MovieDetails.swift */,
 				A4B068962B8C078D00E292DC /* MovieDetailsJSON.swift */,
 				A4B0689A2B8D7EFB00E292DC /* MovieDetailsViewModel.swift */,
+				A4EA34FD2B9010E000E6DD3E /* Actor.swift */,
+				A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -373,11 +379,13 @@
 				A41074762B7E630500C2CB0E /* MovieListJSON.swift in Sources */,
 				A410747A2B7FC31A00C2CB0E /* MovieSkeletonView.swift in Sources */,
 				A4C646B92B74747F000E0DA7 /* ContentView.swift in Sources */,
+				A4EA34FC2B900ED100E6DD3E /* CreditsJSON.swift in Sources */,
 				A4C646E32B7BC625000E0DA7 /* ScoreView.swift in Sources */,
 				A4B068992B8C107500E292DC /* MovieDetails.swift in Sources */,
 				A4D8DE172B7D1A7900C31D7F /* CarouselView.swift in Sources */,
 				A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */,
 				A410748E2B82B97200C2CB0E /* MovieGridView.swift in Sources */,
+				A4EA34FE2B9010E000E6DD3E /* Actor.swift in Sources */,
 				A4B0689F2B8EC97700E292DC /* UIImage+Extensions.swift in Sources */,
 				A4B0689D2B8D85ED00E292DC /* MovieDetailsView.swift in Sources */,
 				A41074842B81A13900C2CB0E /* MoviesAPI.swift in Sources */,

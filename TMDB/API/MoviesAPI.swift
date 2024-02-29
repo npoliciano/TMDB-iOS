@@ -56,6 +56,23 @@ class MoviesAPI {
         dataTask.resume()
     }
 
+    func getCast(url: URL, completion: @escaping ([Actor]?) -> Void) {
+        requestDecodable(url: url) { (json: CreditsJSON?) in
+            guard let json else {
+                completion(nil)
+                return
+            }
+            let cast = json.cast.map { actorJson in
+                Actor(
+                    name: actorJson.name,
+                    profileURL: URL(string: "https://image.tmdb.org/t/p/w185\(actorJson.profilePath)")!,
+                    character: actorJson.character
+                )
+            }
+            completion(cast)
+        }
+    }
+
     func getMovieDetails(url: URL, completion: @escaping (MovieDetails?) -> Void) {
         requestDecodable(url: url) { (json: MovieDetailsJSON?) in
             if let json {
