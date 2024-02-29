@@ -65,7 +65,9 @@ class MoviesAPI {
             let cast = json.cast.map { actorJson in
                 Actor(
                     name: actorJson.name,
-                    profileURL: URL(string: "https://image.tmdb.org/t/p/w185\(actorJson.profilePath)")!,
+                    profileURL: actorJson.profilePath.map { path in
+                        URL(string: "https://image.tmdb.org/t/p/w185/\(path)")!
+                    },
                     character: actorJson.character
                 )
             }
@@ -73,7 +75,7 @@ class MoviesAPI {
         }
     }
 
-    func getMovieDetails(url: URL, completion: @escaping (MovieDetails?) -> Void) {
+    func getMovieSummary(url: URL, completion: @escaping (MovieSummary?) -> Void) {
         requestDecodable(url: url) { (json: MovieDetailsJSON?) in
             if let json {
                 let dateFormatter = DateFormatter()
@@ -88,7 +90,7 @@ class MoviesAPI {
                 formatter.unitsStyle = .abbreviated
                 let runtime = formatter.string(from: TimeInterval(interval))!
 
-                let movieDetails = MovieDetails(
+                let movieSummary = MovieSummary(
                     title: json.title,
                     genres: json.genres
                         .map { $0.name }
@@ -102,7 +104,7 @@ class MoviesAPI {
                     tagline: json.tagline,
                     voteAverage: json.voteAverage
                 )
-                completion(movieDetails)
+                completion(movieSummary)
             } else {
                 completion(nil)
             }

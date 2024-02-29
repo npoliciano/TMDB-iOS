@@ -20,10 +20,17 @@ class MovieDetailsViewModel: ObservableObject {
     func getMovieDetails() {
         isLoading = true
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)?language=en-US")!
-        api.getMovieDetails(url: url) { movieDetails in
-            self.isLoading = false
-            self.movieDetails = movieDetails
+        let summaryUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)?language=en-US")!
+        let creditsUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)/credits?language=en-US")!
+        
+        api.getMovieSummary(url: summaryUrl) { [weak self] movieSummary in
+            guard let movieSummary else {
+                return
+            }
+
+            self?.api.getCast(url: creditsUrl) { [weak self] cast in
+                self?.movieDetails = MovieDetails(summary: movieSummary, cast: cast ?? [])
+            }
         }
     }
 }

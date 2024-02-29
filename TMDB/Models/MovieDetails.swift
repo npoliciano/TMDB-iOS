@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieDetails {
+struct MovieSummary {
     let title: String
     let genres: String
     let backdropURL: URL
@@ -20,3 +20,7 @@ struct MovieDetails {
     let voteAverage: Double
 }
 
+struct MovieDetails {
+    let summary: MovieSummary
+    let cast: [Actor]
+}

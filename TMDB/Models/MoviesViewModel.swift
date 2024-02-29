@@ -25,9 +25,9 @@ class MoviesViewModel: ObservableObject {
         isLoadingUpcoming = true
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1")!
-        api.getMovies(url: url) { movies in
-            self.isLoadingUpcoming = false
-            self.upcomingMovies = movies ?? []
+        api.getMovies(url: url) { [weak self] movies in
+            self?.isLoadingUpcoming = false
+            self?.upcomingMovies = movies ?? []
         }
     }
 
@@ -35,9 +35,9 @@ class MoviesViewModel: ObservableObject {
         isLoadingNowPlaying = true
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")!
 
-        api.getMovies(url: url) { movies in
-            self.isLoadingNowPlaying = false
-            self.nowPlayingMovies = movies ?? []
+        api.getMovies(url: url) { [weak self] movies in
+            self?.isLoadingNowPlaying = false
+            self?.nowPlayingMovies = movies ?? []
         }
     }
 
@@ -45,9 +45,9 @@ class MoviesViewModel: ObservableObject {
         isLoadingPopular = true
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")!
 
-        api.getMovies(url: url) { movies in
-            self.isLoadingPopular = false
-            self.popularMovies = movies ?? []
+        api.getMovies(url: url) { [weak self] movies in
+            self?.isLoadingPopular = false
+            self?.popularMovies = movies ?? []
         }
     }
 
@@ -55,9 +55,9 @@ class MoviesViewModel: ObservableObject {
         isLoadingTopRated = true
         let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1")!
 
-        api.getMovies(url: url) { movies in
-            self.isLoadingTopRated = false
-            self.topRatedMovies = movies ?? []
+        api.getMovies(url: url) { [weak self] movies in
+            self?.isLoadingTopRated = false
+            self?.topRatedMovies = movies ?? []
         }
     }
 }

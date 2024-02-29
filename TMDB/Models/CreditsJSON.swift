@@ -19,7 +19,7 @@ struct CastJSON: Decodable {
     let name: String
     let originalName: String
     let popularity: Double
-    let profilePath: String
+    let profilePath: String?
     let castId: Int
     let character: String
     let creditId: String

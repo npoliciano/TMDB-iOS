@@ -44,9 +44,9 @@ class MovieListViewModel: ObservableObject {
         isLoading = true
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedList.rawValue)?language=en-US&page=1")!
-        api.getMovies(url: url) { movies in
-            self.isLoading = false
-            self.movies = movies ?? []
+        api.getMovies(url: url) { [weak self] movies in
+            self?.isLoading = false
+            self?.movies = movies ?? []
         }
     }
 }

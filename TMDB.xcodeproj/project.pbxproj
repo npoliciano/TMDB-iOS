@@ -38,6 +38,7 @@
 		A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4D8DE182B7D204700C31D7F /* Movie.swift */; };
 		A4EA34FC2B900ED100E6DD3E /* CreditsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */; };
 		A4EA34FE2B9010E000E6DD3E /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA34FD2B9010E000E6DD3E /* Actor.swift */; };
+		A4EA35002B9027B000E6DD3E /* MovieSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EA34FF2B9027B000E6DD3E /* MovieSummaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		A4D8DE182B7D204700C31D7F /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditsJSON.swift; sourceTree = "<group>"; };
 		A4EA34FD2B9010E000E6DD3E /* Actor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		A4EA34FF2B9027B000E6DD3E /* MovieSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSummaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				A410748D2B82B97200C2CB0E /* MovieGridView.swift */,
 				A41074892B81A59500C2CB0E /* MovieBackdropView.swift */,
 				A4B0689C2B8D85ED00E292DC /* MovieDetailsView.swift */,
+				A4EA34FF2B9027B000E6DD3E /* MovieSummaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				A4D8DE192B7D204700C31D7F /* Movie.swift in Sources */,
 				A4B068972B8C078D00E292DC /* MovieDetailsJSON.swift in Sources */,
 				A4C646E12B7A91CE000E0DA7 /* MovieView.swift in Sources */,
+				A4EA35002B9027B000E6DD3E /* MovieSummaryView.swift in Sources */,
 				A41074782B7E671400C2CB0E /* MoviesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
