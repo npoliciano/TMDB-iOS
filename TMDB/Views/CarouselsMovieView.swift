@@ -1,5 +1,5 @@
 //
-//  CarouselsView.swift
+//  CarouselsMovieView.swift
 //  TMDB
 //
 //  Created by Nicolle on 16/02/24.
@@ -11,7 +11,7 @@ struct NowPlayingCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
 
     var body: some View {
-        CarouselView(
+        CarouselMovieView(
             title: "Now Playing",
             isLoading: viewModel.isLoadingNowPlaying,
             movies: viewModel.nowPlayingMovies, 
@@ -27,7 +27,7 @@ struct UpcomingCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
 
     var body: some View {
-        CarouselView(
+        CarouselMovieView(
             title: "Upcoming",
             isLoading: viewModel.isLoadingUpcoming,
             movies: viewModel.upcomingMovies, 
@@ -43,7 +43,7 @@ struct PopularCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
 
     var body: some View {
-        CarouselView(
+        CarouselMovieView(
             title: "Popular",
             isLoading: viewModel.isLoadingPopular,
             movies: viewModel.popularMovies, 
@@ -59,7 +59,7 @@ struct TopRatedCarouselView: View {
     @ObservedObject var viewModel = MoviesViewModel()
 
     var body: some View {
-        CarouselView(
+        CarouselMovieView(
             title: "Top Rated",
             isLoading: viewModel.isLoadingTopRated,
             movies: viewModel.topRatedMovies, 

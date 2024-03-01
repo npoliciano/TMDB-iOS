@@ -12,15 +12,13 @@ struct MovieDetailsView: View {
 
     var body: some View {
         ScrollView {
-            VStack {
+            VStack(spacing: 32) {
                 if let summary = viewModel.movieDetails?.summary {
                     MovieSummaryView(summary: summary)
                 }
 
-                Spacer()
-
                 if let cast = viewModel.movieDetails?.cast {
-                    Text("Top Billed Cast")
+                    CarouselActorView(cast: cast)
                 }
             }
         }

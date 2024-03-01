@@ -62,6 +62,7 @@ class MoviesAPI {
                 completion(nil)
                 return
             }
+            print(json)
             let cast = json.cast.map { actorJson in
                 Actor(
                     name: actorJson.name,

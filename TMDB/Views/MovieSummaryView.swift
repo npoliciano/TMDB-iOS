@@ -95,6 +95,7 @@ struct MovieSummaryView: View {
             }
             .padding()
         }
+        .padding(.bottom)
         .foregroundStyle(.white)
         .background(backgroundColor)
     }

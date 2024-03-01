@@ -1,5 +1,5 @@
 //
-//  CarouselView.swift
+//  CarouselMovieView.swift
 //  TMDB
 //
 //  Created by Nicolle on 14/02/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CarouselView: View {
+struct CarouselMovieView: View {
     let title: String
     let isLoading: Bool
     let movies: [Movie]
@@ -67,7 +67,7 @@ struct CarouselView: View {
 }
 
 #Preview {
-    CarouselView(
+    CarouselMovieView(
         title: "Discover",
         isLoading: true,
         movies: [],
