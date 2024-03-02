@@ -23,4 +23,5 @@ struct MovieSummary {
 struct MovieDetails {
     let summary: MovieSummary
     let cast: [Actor]
+    let trailerURL: URL?
 }

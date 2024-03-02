@@ -22,6 +22,7 @@ class MovieDetailsViewModel: ObservableObject {
 
         let summaryUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)?language=en-US")!
         let creditsUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)/credits?language=en-US")!
+        let trailerURL = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)/videos?language=en-US")!
 
         let group = DispatchGroup()
 
@@ -39,9 +40,19 @@ class MovieDetailsViewModel: ObservableObject {
             group.leave()
         }
 
+        var urlResult: URL?
+        api.getTrailer(url: trailerURL) { url in
+            urlResult = url
+            group.leave()
+        }
+
         group.notify(queue: .main) { [weak self] in
             if let summaryResult {
-                self?.movieDetails = MovieDetails(summary: summaryResult, cast: castResult)
+                self?.movieDetails = MovieDetails(
+                    summary: summaryResult,
+                    cast: castResult,
+                    trailerURL: urlResult
+                )
             }
         }
     }
