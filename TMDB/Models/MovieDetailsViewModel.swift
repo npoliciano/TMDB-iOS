@@ -41,6 +41,7 @@ class MovieDetailsViewModel: ObservableObject {
         }
 
         var urlResult: URL?
+        group.enter()
         api.getTrailer(url: trailerURL) { url in
             urlResult = url
             group.leave()

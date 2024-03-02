@@ -10,6 +10,8 @@ import Kingfisher
 
 struct MovieSummaryView: View {
     let summary: MovieSummary
+    let trailerURL: URL?
+    @State var isTrailerButtonTapped = false
     @State var backgroundColor = Color(uiColor: .systemBackground)
 
     var body: some View {
@@ -59,8 +61,14 @@ struct MovieSummaryView: View {
                 Divider()
                     .frame(height: 30)
                     .overlay(.white)
-                Text("▶︎   Play Trailer")
-                    .font(.headline)
+                Button {
+                    isTrailerButtonTapped.toggle()
+                } label: {
+                    Text("▶︎   Play Trailer")
+                        .font(.headline)
+                        .opacity(trailerURL == nil ? 0.3 : 1.0)
+                }
+                .disabled(trailerURL == nil)
             }
             .padding(.vertical, 10)
 
@@ -98,6 +106,9 @@ struct MovieSummaryView: View {
         .padding(.bottom)
         .foregroundStyle(.white)
         .background(backgroundColor)
+        .sheet(isPresented: $isTrailerButtonTapped, content: {
+            Text("Test")
+        })
     }
 }
 
@@ -115,6 +126,7 @@ struct MovieSummaryView: View {
             runtime: "155",
             tagline: "It begins.",
             voteAverage: 7.787
-        )
+        ),
+        trailerURL: nil
     )
 }

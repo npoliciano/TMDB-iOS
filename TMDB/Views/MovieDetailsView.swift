@@ -14,7 +14,7 @@ struct MovieDetailsView: View {
         ScrollView {
             VStack(spacing: 32) {
                 if let summary = viewModel.movieDetails?.summary {
-                    MovieSummaryView(summary: summary)
+                    MovieSummaryView(summary: summary, trailerURL: viewModel.movieDetails?.trailerURL)
                 }
 
                 if let cast = viewModel.movieDetails?.cast {

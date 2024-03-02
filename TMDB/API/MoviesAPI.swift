@@ -64,7 +64,7 @@ class MoviesAPI {
             }
             print(json)
             let trailer = json.results.first { video in
-                video.type == "Trailer" && video.site == "Youtube"
+                video.type == "Trailer" && video.site == "YouTube"
             }
             if let trailer {
                 let url = URL(string: "https://www.youtube.com/embed/\(trailer.key)")
