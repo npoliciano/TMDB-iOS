@@ -56,6 +56,25 @@ class MoviesAPI {
         dataTask.resume()
     }
 
+    func getTrailer(url: URL, completion: @escaping (URL?) -> Void) {
+        requestDecodable(url: url) { (json: VideosJSON?) in
+            guard let json else {
+                completion(nil)
+                return
+            }
+            print(json)
+            let trailer = json.results.first { video in
+                video.type == "Trailer" && video.site == "Youtube"
+            }
+            if let trailer {
+                let url = URL(string: "https://www.youtube.com/embed/\(trailer.key)")
+                completion(url)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
     func getCast(url: URL, completion: @escaping ([Actor]?) -> Void) {
         requestDecodable(url: url) { (json: CreditsJSON?) in
             guard let json else {
