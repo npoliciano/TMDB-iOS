@@ -22,14 +22,26 @@ class MovieDetailsViewModel: ObservableObject {
 
         let summaryUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)?language=en-US")!
         let creditsUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)/credits?language=en-US")!
-        
-        api.getMovieSummary(url: summaryUrl) { [weak self] movieSummary in
-            guard let movieSummary else {
-                return
-            }
 
-            self?.api.getCast(url: creditsUrl) { [weak self] cast in
-                self?.movieDetails = MovieDetails(summary: movieSummary, cast: cast ?? [])
+        let group = DispatchGroup()
+
+        group.enter()
+        var summaryResult: MovieSummary?
+        api.getMovieSummary(url: summaryUrl) { movieSummary in
+            summaryResult = movieSummary
+            group.leave()
+        }
+
+        var castResult: [Actor] = []
+        group.enter()
+        api.getCast(url: creditsUrl) { cast in
+            castResult = cast ?? []
+            group.leave()
+        }
+
+        group.notify(queue: .main) { [weak self] in
+            if let summaryResult {
+                self?.movieDetails = MovieDetails(summary: summaryResult, cast: castResult)
             }
         }
     }
