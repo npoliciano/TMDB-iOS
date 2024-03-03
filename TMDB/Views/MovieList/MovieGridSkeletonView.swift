@@ -17,14 +17,7 @@ struct MovieGridSkeletonView: View {
             GridRow {
                 ForEach(0 ..< columns, id: \.self) { _ in
                     MovieBackdropView(
-                        movie: Movie(
-                            id: 0,
-                            title: "--------",
-                            score: 0.0,
-                            releaseDate: "--------",
-                            backdropURL: URL(string: "http://dummy.com")!,
-                            posterURL: URL(string: "http://dummy.com")!
-                        ),
+                        movie: .dummy,
                         isLoading: true
                     )
                     .padding()

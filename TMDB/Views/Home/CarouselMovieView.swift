@@ -25,6 +25,15 @@ struct CarouselMovieView: View {
                             MovieSkeletonView()
                         }
                     } else {
+                        ForEach(movies) { movie in
+                            NavigationLink {
+                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movie.id))
+                            } label: {
+                                MovieView(movie: movie)
+                            }
+                            .buttonStyle(.plain)
+                        }
+
                         if !movies.isEmpty {
                             VStack {
                                 Spacer()
@@ -38,16 +47,6 @@ struct CarouselMovieView: View {
                                 Spacer()
                             }
                         }
-                        
-                        ForEach(movies) { movie in
-                            NavigationLink {
-                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movie.id))
-                            } label: {
-                                MovieView(movie: movie)
-                            }
-                            .buttonStyle(.plain)
-                        }
-
                     }
                 }
                 .padding(.horizontal)
