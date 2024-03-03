@@ -10,15 +10,22 @@ import Kingfisher
 
 struct MovieBackdropView: View {
     let movie: Movie
+    var isLoading: Bool = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            KFImage(movie.backdropURL)
-                .resizable()
-                .scaledToFit()
-                .background(.gray.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-
+            if isLoading {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(.quaternary)
+                    .frame(height: 200)
+                    .frame(maxWidth: .infinity)
+            } else {
+                KFImage(movie.backdropURL)
+                    .resizable()
+                    .scaledToFit()
+                    .background(.gray.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text(movie.title)
@@ -30,10 +37,14 @@ struct MovieBackdropView: View {
                         .foregroundStyle(.primary.opacity(0.7))
                 }
                 Spacer()
-                ScoreView(size: .regular, score: 7)
-                    .offset(x: 0, y: -35)
+
+                if !isLoading {
+                    ScoreView(size: .regular, score: 7)
+                        .offset(x: 0, y: -35)
+                }
             }
             .padding(.trailing)
+            .redacted(reason: isLoading ? .placeholder : .invalidated)
         }
     }
 }

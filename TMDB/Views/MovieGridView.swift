@@ -31,20 +31,25 @@ struct MovieGridView: View {
                         .redacted(reason: viewModel.isLoading ? .placeholder : .invalidated)
 
                     Grid {
-                        let columns = columns(for: proxy.size.width)
-                        let rows = rows(for: columns)
-                        ForEach(0 ..< rows, id: \.self) { row in
-                            GridRow {
-                                ForEach(0 ..< columns, id: \.self) { column in
-                                    let index = row * columns + column
-                                    if index < viewModel.movies.count {
-                                        NavigationLink {
-                                            MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
-                                        } label: {
-                                            MovieBackdropView(movie: viewModel.movies[index])
-                                                .padding()
+                        if viewModel.isLoading {
+                            MovieGridSkeletonView(columns: columns(for: proxy.size.width))
+                        } else {
+                            let columns = columns(for: proxy.size.width)
+                            let rows = rows(for: columns)
+
+                            ForEach(0 ..< rows, id: \.self) { row in
+                                GridRow {
+                                    ForEach(0 ..< columns, id: \.self) { column in
+                                        let index = row * columns + column
+                                        if index < viewModel.movies.count {
+                                            NavigationLink {
+                                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
+                                            } label: {
+                                                MovieBackdropView(movie: viewModel.movies[index])
+                                                    .padding()
+                                            }
+                                            .buttonStyle(.plain)
                                         }
-                                        .buttonStyle(.plain)
                                     }
                                 }
                             }
@@ -56,6 +61,7 @@ struct MovieGridView: View {
                 viewModel.getMovies()
             }
         }
+        .allowsHitTesting(!viewModel.isLoading)
         .toolbarBackground(Colors.navigationBar, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
