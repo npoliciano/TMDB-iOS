@@ -15,18 +15,8 @@ struct CarouselMovieView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            if isLoading {
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.gray.opacity(0.3))
-                    .frame(width: 200,height: 20)
-                    .padding(.leading)
-                    .padding(.bottom, 10)
-            } else if !movies.isEmpty {
-                Text(title)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding(.leading)
-            }
+            SectionTitleView(title: title)
+                .redacted(reason: isLoading ? .placeholder : .invalidated)
 
             ScrollView(.horizontal) {
                 HStack(alignment: .top, spacing: 20) {

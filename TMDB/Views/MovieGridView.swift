@@ -26,10 +26,9 @@ struct MovieGridView: View {
         GeometryReader { proxy in
             ScrollView {
                 VStack(alignment: .leading) {
-                    Text(viewModel.title)
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .padding([.top, .leading, .trailing])
+                    SectionTitleView(title: viewModel.title)
+                        .padding([.top, .trailing])
+                        .redacted(reason: viewModel.isLoading ? .placeholder : .invalidated)
 
                     Grid {
                         let columns = columns(for: proxy.size.width)

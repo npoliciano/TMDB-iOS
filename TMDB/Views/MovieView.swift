@@ -10,6 +10,7 @@ import Kingfisher
 
 struct MovieView: View {
     let movie: Movie
+    var isLoading: Bool = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -22,8 +23,10 @@ struct MovieView: View {
                     .background(.gray.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
 
-                ScoreView(size: .compact, score: movie.score)
-                    .offset(x: 12, y: 15)
+                if !isLoading {
+                    ScoreView(size: .compact, score: movie.score)
+                        .offset(x: 12, y: 15)
+                }
             }
 
             VStack(alignment: .leading) {
@@ -40,6 +43,7 @@ struct MovieView: View {
             .padding([.vertical, .trailing], 8)
         }
         .frame(width: 160)
+        .redacted(reason: isLoading ? .placeholder : .invalidated)
     }
 }
 
@@ -55,7 +59,8 @@ struct MovieView: View {
             releaseDate: "Feb 09, 2024",
             backdropURL: URL(string: "https://image.tmdb.org/t/p/w780/uUiIGztTrfDhPdAFJpr6m4UBMAd.jpg")!,
             posterURL: URL(string: "https://media.themoviedb.org/t/p/w440_and_h660_face/qhb1qOilapbapxWQn9jtRCMwXJF.jpg")!
-        )
+        ), 
+        isLoading: false
     )
     .padding(8)
 }

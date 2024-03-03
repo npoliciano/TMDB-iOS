@@ -12,10 +12,7 @@ struct CarouselActorView: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Top Billed Cast")
-                .font(.title2)
-                .fontWeight(.bold)
-                .padding(.leading)
+            SectionTitleView(title: "Top Billed Cast")
 
             ScrollView(.horizontal) {
                 HStack(alignment: .top, spacing: 20) {
