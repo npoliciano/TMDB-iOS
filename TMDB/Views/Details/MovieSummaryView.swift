@@ -11,6 +11,7 @@ import Kingfisher
 struct MovieSummaryView: View {
     let summary: MovieSummary
     let trailerURL: URL?
+    var isLoading = false
     @State var isTrailerButtonTapped = false
     @State var backgroundColor = Color(uiColor: .systemBackground)
 
@@ -41,26 +42,37 @@ struct MovieSummaryView: View {
             }
             .frame(height: 240)
 
-            Group {
+            if isLoading {
                 Text(summary.title)
                     .font(.title)
                     .fontWeight(.medium)
+            } else {
+                Group {
+                    Text(summary.title)
+                        .font(.title)
+                        .fontWeight(.medium)
 
-                + Text(" (\(summary.releaseYear))")
-                    .font(.title3)
-                    .fontWeight(.light)
+                    + Text(" (\(summary.releaseYear))")
+                        .font(.title3)
+                        .fontWeight(.light)
+                }
+                .multilineTextAlignment(.center)
             }
-            .multilineTextAlignment(.center)
-
             HStack(spacing: 30) {
-                ScoreView(size: .regular, score: summary.voteAverage)
-                    .offset(x: 15)
+                if !isLoading {
+                    ScoreView(size: .regular, score: summary.voteAverage)
+                        .offset(x: 15)
+                }
                 Text("User Score")
                     .font(.headline)
                     .fontWeight(.bold)
-                Divider()
-                    .frame(height: 30)
-                    .overlay(.white)
+
+                if !isLoading {
+                    Divider()
+                        .frame(height: 30)
+                        .overlay(.white)
+                }
+
                 Button {
                     isTrailerButtonTapped.toggle()
                 } label: {
@@ -68,6 +80,7 @@ struct MovieSummaryView: View {
                         .font(.headline)
                         .opacity(trailerURL == nil ? 0.3 : 1.0)
                 }
+//                .buttonStyle(.plain)
                 .disabled(trailerURL == nil)
             }
             .padding(.vertical, 10)
@@ -85,7 +98,7 @@ struct MovieSummaryView: View {
                     .overlay(.black.opacity(0.6))
                     .padding(.top, 6)
             }
-            .background(.black.opacity(0.1))
+            .background(isLoading ? .clear : .black.opacity(0.1))
 
             VStack(alignment: .leading, spacing: 16) {
                 if !summary.tagline.isEmpty {
@@ -104,7 +117,7 @@ struct MovieSummaryView: View {
             .padding()
         }
         .padding(.bottom)
-        .foregroundStyle(.white)
+        .foregroundStyle(isLoading ? .black : .white)
         .background(backgroundColor)
         .sheet(isPresented: $isTrailerButtonTapped, content: {
             WebView(url: trailerURL!)

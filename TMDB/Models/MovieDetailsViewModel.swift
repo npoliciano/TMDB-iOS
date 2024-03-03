@@ -48,6 +48,7 @@ class MovieDetailsViewModel: ObservableObject {
         }
 
         group.notify(queue: .main) { [weak self] in
+            self?.isLoading = false
             if let summaryResult {
                 self?.movieDetails = MovieDetails(
                     summary: summaryResult,

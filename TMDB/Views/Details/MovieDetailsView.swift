@@ -13,15 +13,20 @@ struct MovieDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                if let summary = viewModel.movieDetails?.summary {
-                    MovieSummaryView(summary: summary, trailerURL: viewModel.movieDetails?.trailerURL)
-                }
+                if viewModel.isLoading {
+                    MovieDetailsSkeletonView()
+                } else {
+                    if let summary = viewModel.movieDetails?.summary {
+                        MovieSummaryView(summary: summary, trailerURL: viewModel.movieDetails?.trailerURL)
+                    }
 
-                if let cast = viewModel.movieDetails?.cast {
-                    CarouselActorView(cast: cast)
+                    if let cast = viewModel.movieDetails?.cast {
+                        CarouselActorView(cast: cast)
+                    }
                 }
             }
         }
+        .allowsHitTesting(!viewModel.isLoading)
         .toolbarBackground(Colors.navigationBar, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .principal) {
