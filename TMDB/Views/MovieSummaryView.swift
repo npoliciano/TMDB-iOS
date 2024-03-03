@@ -107,7 +107,7 @@ struct MovieSummaryView: View {
         .foregroundStyle(.white)
         .background(backgroundColor)
         .sheet(isPresented: $isTrailerButtonTapped, content: {
-            Text("Test")
+            WebView(url: trailerURL!)
         })
     }
 }
