@@ -27,9 +27,16 @@ struct CarouselMovieView: View {
 
             switch state {
             case .loading:
-                ForEach(0...10, id: \.self) { _ in
-                    MovieSkeletonView()
+                ScrollView(.horizontal) {
+                    HStack(alignment: .top, spacing: 20) {
+                        ForEach(0...10, id: \.self) { _ in
+                            MovieSkeletonView()
+                        }
+                    }
+                    .padding(.horizontal)
                 }
+                .allowsHitTesting(false)
+                .scrollIndicators(.hidden)
             case .error:
                 ErrorView(
                     message: "Could not get \(title) movies",

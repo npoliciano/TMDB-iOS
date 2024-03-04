@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var viewModel = MoviesViewModel()
+
     var body: some View {
         NavigationStack {
             ScrollView(.vertical) {
                 VStack(spacing: 32) {
-                    NowPlayingCarouselView()
-                    UpcomingCarouselView()
-                    PopularCarouselView()
-                    TopRatedCarouselView()
+                    NowPlayingCarouselView(viewModel: viewModel)
+                    UpcomingCarouselView(viewModel: viewModel)
+                    PopularCarouselView(viewModel: viewModel)
+                    TopRatedCarouselView(viewModel: viewModel)
                 }
                 .padding(.bottom, 16)
             }
+            .scrollDisabled(viewModel.isScrollDisabled)
             .padding(.top)
             .toolbar {
                 ToolbarItem(placement: .principal) {

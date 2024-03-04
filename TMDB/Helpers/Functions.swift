@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+func delayOneSecond(action: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        action()
+    }
+}

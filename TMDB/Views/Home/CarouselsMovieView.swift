@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct NowPlayingCarouselView: View {
-    @ObservedObject var viewModel = MoviesViewModel()
+    @ObservedObject var viewModel: MoviesViewModel
 
     var body: some View {
         CarouselMovieView(
@@ -26,7 +26,7 @@ struct NowPlayingCarouselView: View {
 }
 
 struct UpcomingCarouselView: View {
-    @ObservedObject var viewModel = MoviesViewModel()
+    @ObservedObject var viewModel: MoviesViewModel
 
     var body: some View {
         CarouselMovieView(
@@ -44,7 +44,7 @@ struct UpcomingCarouselView: View {
 }
 
 struct PopularCarouselView: View {
-    @ObservedObject var viewModel = MoviesViewModel()
+    @ObservedObject var viewModel: MoviesViewModel
 
     var body: some View {
         CarouselMovieView(
@@ -62,7 +62,7 @@ struct PopularCarouselView: View {
 }
 
 struct TopRatedCarouselView: View {
-    @ObservedObject var viewModel = MoviesViewModel()
+    @ObservedObject var viewModel: MoviesViewModel
 
     var body: some View {
         CarouselMovieView(
@@ -81,5 +81,5 @@ struct TopRatedCarouselView: View {
 
 
 #Preview {
-    NowPlayingCarouselView()
+    NowPlayingCarouselView(viewModel: MoviesViewModel())
 }

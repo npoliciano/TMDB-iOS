@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum MovieListState {
+    case loading
+    case error
+    case content([Movie])
+}
+
 enum SelectedList: String {
     case popular
     case upcoming
@@ -28,10 +34,11 @@ enum SelectedList: String {
 }
 
 class MovieListViewModel: ObservableObject {
+    @Published var state = MovieListState.loading
+
     private let api = MoviesAPI()
-    @Published var movies: [Movie] = []
-    @Published var isLoading = false
     private let selectedList: SelectedList
+    
     var title: String {
         selectedList.viewTitle
     }
@@ -41,12 +48,17 @@ class MovieListViewModel: ObservableObject {
     }
 
     func getMovies() {
-        isLoading = true
+        state = .loading
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedList.rawValue)?language=en-US&page=1")!
         api.getMovies(url: url) { [weak self] movies in
-            self?.isLoading = false
-            self?.movies = movies ?? []
+            if let movies {
+                self?.state = .content(movies)
+            } else {
+                delayOneSecond {
+                    self?.state = .error
+                }
+            }
         }
     }
 }

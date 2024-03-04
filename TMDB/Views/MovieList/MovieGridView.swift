@@ -15,11 +15,18 @@ struct MovieGridView: View {
         Int(screenWidth / minimumCellWidth)
     }
 
-    func rows(for columns: Int) -> Int {
+    func rows(for columns: Int, for movies: [Movie]) -> Int {
         guard columns > 0 else {
             return 0
         }
-        return Int(ceil(Double(viewModel.movies.count) / Double(columns)))
+        return Int(ceil(Double(movies.count) / Double(columns)))
+    }
+
+    private var isLoading: Bool {
+        if case .loading = viewModel.state {
+            return true
+        }
+        return false
     }
 
     var body: some View {
@@ -28,24 +35,36 @@ struct MovieGridView: View {
                 VStack(alignment: .leading) {
                     SectionTitleView(title: viewModel.title)
                         .padding([.top, .trailing])
-                        .redacted(reason: viewModel.isLoading ? .placeholder : .invalidated)
-
-                    Grid {
-                        if viewModel.isLoading {
+                        .redacted(reason: isLoading ? .placeholder : .invalidated)
+                    switch viewModel.state {
+                    case .loading:
+                        Grid {
                             MovieGridSkeletonView(columns: columns(for: proxy.size.width))
-                        } else {
+                        }
+                    case .error:
+                        ErrorView(
+                            message: "Could not get the \(viewModel.title) movies.",
+                            onTryAgain: {
+                                viewModel.getMovies()
+                            }
+                        )
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 276)
+                        .padding()
+                    case .content(let movies):
+                        Grid {
                             let columns = columns(for: proxy.size.width)
-                            let rows = rows(for: columns)
+                            let rows = rows(for: columns, for: movies)
 
                             ForEach(0 ..< rows, id: \.self) { row in
                                 GridRow {
                                     ForEach(0 ..< columns, id: \.self) { column in
                                         let index = row * columns + column
-                                        if index < viewModel.movies.count {
+                                        if index < movies.count {
                                             NavigationLink {
-                                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: viewModel.movies[index].id))
+                                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movies[index].id))
                                             } label: {
-                                                MovieBackdropView(movie: viewModel.movies[index])
+                                                MovieBackdropView(movie: movies[index])
                                                     .padding()
                                             }
                                             .buttonStyle(.plain)
@@ -61,7 +80,7 @@ struct MovieGridView: View {
                 viewModel.getMovies()
             }
         }
-        .allowsHitTesting(!viewModel.isLoading)
+        .allowsHitTesting(!isLoading)
         .toolbarBackground(Colors.navigationBar, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .principal) {

@@ -11,6 +11,13 @@ enum SectionState {
     case loading
     case error
     case content([Movie])
+
+    var isLoading: Bool {
+        if case .loading = self {
+            return true
+        }
+        return false
+    }
 }
 
 class MoviesViewModel: ObservableObject {
@@ -20,10 +27,8 @@ class MoviesViewModel: ObservableObject {
     @Published var popularState = SectionState.loading
     @Published var topRatedState = SectionState.loading
 
-    private func delayOneSecond(action: @escaping () -> Void) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            action()
-        }
+    var isScrollDisabled: Bool {
+        upcomingState.isLoading && nowPlayingState.isLoading && popularState.isLoading && topRatedState.isLoading
     }
 
     func getUpcomingMovies() {
@@ -34,7 +39,7 @@ class MoviesViewModel: ObservableObject {
             if let movies {
                 self?.upcomingState = .content(movies)
             } else {
-                self?.delayOneSecond { [weak self] in
+                delayOneSecond {
                     self?.upcomingState = .error
                 }
             }
@@ -49,7 +54,7 @@ class MoviesViewModel: ObservableObject {
             if let movies {
                 self?.nowPlayingState = .content(movies)
             } else {
-                self?.delayOneSecond { [weak self] in
+                delayOneSecond {
                     self?.nowPlayingState = .error
                 }
             }
@@ -64,7 +69,7 @@ class MoviesViewModel: ObservableObject {
             if let movies {
                 self?.popularState = .content(movies)
             } else {
-                self?.delayOneSecond { [weak self] in
+                delayOneSecond {
                     self?.popularState = .error
                 }
             }
@@ -79,7 +84,7 @@ class MoviesViewModel: ObservableObject {
             if let movies {
                 self?.topRatedState = .content(movies)
             } else {
-                self?.delayOneSecond { [weak self] in
+                delayOneSecond {
                     self?.topRatedState = .error
                 }
             }
