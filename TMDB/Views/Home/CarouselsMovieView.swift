@@ -14,8 +14,12 @@ struct NowPlayingCarouselView: View {
         CarouselMovieView(
             title: "Now Playing",
             isLoading: viewModel.isLoadingNowPlaying,
-            movies: viewModel.nowPlayingMovies, 
-            selectedList: .nowPlaying
+            hasError: viewModel.hasNowPlayingError,
+            movies: viewModel.nowPlayingMovies,
+            selectedList: .nowPlaying,
+            onTryAgain: {
+                viewModel.getNowPlayingMovies()
+            }
         )
         .onAppear() {
             viewModel.getNowPlayingMovies()
@@ -30,8 +34,12 @@ struct UpcomingCarouselView: View {
         CarouselMovieView(
             title: "Upcoming",
             isLoading: viewModel.isLoadingUpcoming,
-            movies: viewModel.upcomingMovies, 
-            selectedList: .upcoming
+            hasError: viewModel.hasUpcomingError,
+            movies: viewModel.upcomingMovies,
+            selectedList: .upcoming,
+            onTryAgain: {
+                viewModel.getUpcomingMovies()
+            }
         )
         .onAppear() {
             viewModel.getUpcomingMovies()
@@ -46,8 +54,12 @@ struct PopularCarouselView: View {
         CarouselMovieView(
             title: "Popular",
             isLoading: viewModel.isLoadingPopular,
-            movies: viewModel.popularMovies, 
-            selectedList: .popular
+            hasError: viewModel.hasPopularError,
+            movies: viewModel.popularMovies,
+            selectedList: .popular,
+            onTryAgain: {
+                viewModel.getPopularMovies()
+            }
         )
         .onAppear() {
             viewModel.getPopularMovies()
@@ -62,8 +74,12 @@ struct TopRatedCarouselView: View {
         CarouselMovieView(
             title: "Top Rated",
             isLoading: viewModel.isLoadingTopRated,
-            movies: viewModel.topRatedMovies, 
-            selectedList: .topRated
+            hasError: viewModel.hasTopRatedError,
+            movies: viewModel.topRatedMovies,
+            selectedList: .topRated,
+            onTryAgain: {
+                viewModel.getTopRatedMovies()
+            }
         )
         .onAppear() {
             viewModel.getTopRatedMovies()
