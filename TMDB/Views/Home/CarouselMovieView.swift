@@ -31,16 +31,10 @@ struct CarouselMovieView: View {
                     MovieSkeletonView()
                 }
             case .error:
-                VStack {
-                    Text("Could not get \(title) movies")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-
-                    Button("Try again") {
-                        onTryAgain()
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
+                ErrorView(
+                    message: "Could not get \(title) movies",
+                    onTryAgain: onTryAgain
+                )
                 .frame(maxWidth: .infinity)
                 .frame(height: 276)
                 .padding()
