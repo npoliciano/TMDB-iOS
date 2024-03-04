@@ -13,9 +13,7 @@ struct NowPlayingCarouselView: View {
     var body: some View {
         CarouselMovieView(
             title: "Now Playing",
-            isLoading: viewModel.isLoadingNowPlaying,
-            hasError: viewModel.hasNowPlayingError,
-            movies: viewModel.nowPlayingMovies,
+            state: viewModel.nowPlayingState,
             selectedList: .nowPlaying,
             onTryAgain: {
                 viewModel.getNowPlayingMovies()
@@ -33,9 +31,7 @@ struct UpcomingCarouselView: View {
     var body: some View {
         CarouselMovieView(
             title: "Upcoming",
-            isLoading: viewModel.isLoadingUpcoming,
-            hasError: viewModel.hasUpcomingError,
-            movies: viewModel.upcomingMovies,
+            state: viewModel.upcomingState,
             selectedList: .upcoming,
             onTryAgain: {
                 viewModel.getUpcomingMovies()
@@ -53,9 +49,7 @@ struct PopularCarouselView: View {
     var body: some View {
         CarouselMovieView(
             title: "Popular",
-            isLoading: viewModel.isLoadingPopular,
-            hasError: viewModel.hasPopularError,
-            movies: viewModel.popularMovies,
+            state: viewModel.popularState,
             selectedList: .popular,
             onTryAgain: {
                 viewModel.getPopularMovies()
@@ -73,9 +67,7 @@ struct TopRatedCarouselView: View {
     var body: some View {
         CarouselMovieView(
             title: "Top Rated",
-            isLoading: viewModel.isLoadingTopRated,
-            hasError: viewModel.hasTopRatedError,
-            movies: viewModel.topRatedMovies,
+            state: viewModel.topRatedState,
             selectedList: .topRated,
             onTryAgain: {
                 viewModel.getTopRatedMovies()

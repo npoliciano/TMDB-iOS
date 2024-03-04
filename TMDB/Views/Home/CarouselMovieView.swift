@@ -9,18 +9,28 @@ import SwiftUI
 
 struct CarouselMovieView: View {
     let title: String
-    let isLoading: Bool
-    let hasError: Bool
-    let movies: [Movie]
+    let state: SectionState
     let selectedList: SelectedList
     let onTryAgain: () -> Void
+
+    private var isLoading: Bool {
+        if case .loading = state {
+            return true
+        }
+        return false
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
             SectionTitleView(title: title)
                 .redacted(reason: isLoading ? .placeholder : .invalidated)
 
-            if hasError {
+            switch state {
+            case .loading:
+                ForEach(0...10, id: \.self) { _ in
+                    MovieSkeletonView()
+                }
+            case .error:
                 VStack {
                     Text("Could not get \(title) movies")
                         .font(.subheadline)
@@ -34,42 +44,37 @@ struct CarouselMovieView: View {
                 .frame(maxWidth: .infinity)
                 .frame(height: 276)
                 .padding()
-            } else {
+            case .content(let movies):
                 ScrollView(.horizontal) {
                     HStack(alignment: .top, spacing: 20) {
-                        if isLoading {
-                            ForEach(0...10, id: \.self) { _ in
-                                MovieSkeletonView()
+
+                        ForEach(movies) { movie in
+                            NavigationLink {
+                                MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movie.id))
+                            } label: {
+                                MovieView(movie: movie)
                             }
-                        } else {
-                            ForEach(movies) { movie in
+                            .buttonStyle(.plain)
+                        }
+
+                        if !movies.isEmpty {
+                            VStack {
+                                Spacer()
                                 NavigationLink {
-                                    MovieDetailsView(viewModel: MovieDetailsViewModel(selectedMovieId: movie.id))
+                                    MovieGridView(viewModel: MovieListViewModel(selectedList: selectedList))
                                 } label: {
-                                    MovieView(movie: movie)
+                                    SeeAllView()
                                 }
                                 .buttonStyle(.plain)
-                            }
 
-                            if !movies.isEmpty {
-                                VStack {
-                                    Spacer()
-                                    NavigationLink {
-                                        MovieGridView(viewModel: MovieListViewModel(selectedList: selectedList))
-                                    } label: {
-                                        SeeAllView()
-                                    }
-                                    .buttonStyle(.plain)
-
-                                    Spacer()
-                                }
+                                Spacer()
                             }
                         }
+
                     }
                     .padding(.horizontal)
                 }
                 .scrollIndicators(.hidden)
-                .allowsHitTesting(!isLoading)
             }
         }
     }
@@ -78,9 +83,7 @@ struct CarouselMovieView: View {
 #Preview {
     CarouselMovieView(
         title: "Discover",
-        isLoading: true,
-        hasError: false,
-        movies: [],
+        state: .loading,
         selectedList: .nowPlaying,
         onTryAgain: { }
     )

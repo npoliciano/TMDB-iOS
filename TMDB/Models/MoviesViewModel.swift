@@ -7,86 +7,81 @@
 
 import Foundation
 
+enum SectionState {
+    case loading
+    case error
+    case content([Movie])
+}
+
 class MoviesViewModel: ObservableObject {
     let api = MoviesAPI()
-    @Published var upcomingMovies: [Movie] = []
-    @Published var isLoadingUpcoming = false
-    @Published var hasUpcomingError = false
+    @Published var upcomingState = SectionState.loading
+    @Published var nowPlayingState = SectionState.loading
+    @Published var popularState = SectionState.loading
+    @Published var topRatedState = SectionState.loading
 
-    @Published var nowPlayingMovies: [Movie] = []
-    @Published var isLoadingNowPlaying = false
-    @Published var hasNowPlayingError = false
-
-    @Published var popularMovies: [Movie] = []
-    @Published var isLoadingPopular = false
-    @Published var hasPopularError = false
-
-    @Published var topRatedMovies: [Movie] = []
-    @Published var isLoadingTopRated = false
-    @Published var hasTopRatedError = false
+    private func delayOneSecond(action: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            action()
+        }
+    }
 
     func getUpcomingMovies() {
-        isLoadingUpcoming = true
-        hasUpcomingError = false
+        upcomingState = .loading
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1")!
         api.getMovies(url: url) { [weak self] movies in
             if let movies {
-                self?.isLoadingUpcoming = false
-                self?.upcomingMovies = movies
+                self?.upcomingState = .content(movies)
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-                    self?.isLoadingUpcoming = false
-                    self?.hasUpcomingError = true
+                self?.delayOneSecond { [weak self] in
+                    self?.upcomingState = .error
                 }
             }
         }
     }
 
     func getNowPlayingMovies() {
-        isLoadingNowPlaying = true
-        hasNowPlayingError = false
+        nowPlayingState = .loading
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")!
         api.getMovies(url: url) { [weak self] movies in
-            self?.isLoadingNowPlaying = false
-
             if let movies {
-                self?.nowPlayingMovies = movies
+                self?.nowPlayingState = .content(movies)
             } else {
-                self?.hasNowPlayingError = true
+                self?.delayOneSecond { [weak self] in
+                    self?.nowPlayingState = .error
+                }
             }
         }
     }
 
     func getPopularMovies() {
-        isLoadingPopular = true
-        hasPopularError = false
+        popularState = .loading
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")!
         api.getMovies(url: url) { [weak self] movies in
-            self?.isLoadingPopular = false
-
             if let movies {
-                self?.popularMovies = movies
+                self?.popularState = .content(movies)
             } else {
-                self?.hasPopularError = true
+                self?.delayOneSecond { [weak self] in
+                    self?.popularState = .error
+                }
             }
         }
     }
 
     func getTopRatedMovies() {
-        isLoadingTopRated = true
-        hasTopRatedError = false
+        topRatedState = .loading
 
         let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1")!
         api.getMovies(url: url) { [weak self] movies in
-            self?.isLoadingTopRated = false
-
             if let movies {
-                self?.topRatedMovies = movies
+                self?.topRatedState = .content(movies)
             } else {
-                self?.hasTopRatedError = true
+                self?.delayOneSecond { [weak self] in
+                    self?.topRatedState = .error
+                }
             }
         }
     }
