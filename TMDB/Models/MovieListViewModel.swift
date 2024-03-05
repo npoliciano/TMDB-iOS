@@ -7,11 +7,7 @@
 
 import Foundation
 
-enum MovieListState {
-    case loading
-    case error
-    case content([Movie])
-}
+typealias MovieListState = ViewState<[Movie]>
 
 enum SelectedList: String {
     case popular

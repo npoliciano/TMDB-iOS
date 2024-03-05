@@ -7,18 +7,19 @@
 
 import Foundation
 
+typealias MovieDetailsState = ViewState<MovieDetails>
+
 class MovieDetailsViewModel: ObservableObject {
     private let selectedMovieId: Int
     private let api = MoviesAPI()
-    @Published var movieDetails: MovieDetails?
-    @Published var isLoading = false
+    @Published var state = MovieDetailsState.loading
 
     init(selectedMovieId: Int) {
         self.selectedMovieId = selectedMovieId
     }
 
     func getMovieDetails() {
-        isLoading = true
+        state = .loading
 
         let summaryUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)?language=en-US")!
         let creditsUrl = URL(string: "https://api.themoviedb.org/3/movie/\(selectedMovieId)/credits?language=en-US")!
@@ -48,13 +49,16 @@ class MovieDetailsViewModel: ObservableObject {
         }
 
         group.notify(queue: .main) { [weak self] in
-            self?.isLoading = false
             if let summaryResult {
-                self?.movieDetails = MovieDetails(
+                self?.state = .content(MovieDetails(
                     summary: summaryResult,
                     cast: castResult,
                     trailerURL: urlResult
-                )
+                ))
+            } else {
+                delayOneSecond {
+                    self?.state = .error
+                }
             }
         }
     }

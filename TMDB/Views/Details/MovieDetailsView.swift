@@ -13,20 +13,30 @@ struct MovieDetailsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 32) {
-                if viewModel.isLoading {
+                switch viewModel.state {
+                case .loading:
                     MovieDetailsSkeletonView()
-                } else {
-                    if let summary = viewModel.movieDetails?.summary {
-                        MovieSummaryView(summary: summary, trailerURL: viewModel.movieDetails?.trailerURL)
-                    }
+                case .error:
+                    ErrorView(
+                        message: "Could not get details of the movie",
+                        onTryAgain: {
+                            viewModel.getMovieDetails()
+                        }
+                    )
+                    .padding(36)
+                case .content(let movieDetails):
+                    MovieSummaryView(
+                        summary: movieDetails.summary,
+                        trailerURL: movieDetails.trailerURL
+                    )
 
-                    if let cast = viewModel.movieDetails?.cast {
-                        CarouselActorView(cast: cast)
+                    if !movieDetails.cast.isEmpty {
+                        CarouselActorView(cast: movieDetails.cast)
                     }
                 }
             }
         }
-        .allowsHitTesting(!viewModel.isLoading)
+        .allowsHitTesting(!viewModel.state.isLoading)
         .toolbarBackground(Colors.navigationBar, for: .navigationBar)
         .toolbar {
             ToolbarItem(placement: .principal) {

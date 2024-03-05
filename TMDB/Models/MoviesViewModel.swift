@@ -7,18 +7,7 @@
 
 import Foundation
 
-enum SectionState {
-    case loading
-    case error
-    case content([Movie])
-
-    var isLoading: Bool {
-        if case .loading = self {
-            return true
-        }
-        return false
-    }
-}
+typealias SectionState = ViewState<[Movie]>
 
 class MoviesViewModel: ObservableObject {
     let api = MoviesAPI()

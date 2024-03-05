@@ -25,6 +25,7 @@
 		A462F92A2B941F7200D60FC0 /* MovieDetailsSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462F9292B941F7200D60FC0 /* MovieDetailsSkeletonView.swift */; };
 		A462F92C2B954D0C00D60FC0 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462F92B2B954D0C00D60FC0 /* ErrorView.swift */; };
 		A462F92E2B954F2200D60FC0 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462F92D2B954F2200D60FC0 /* Functions.swift */; };
+		A462F9302B96C09000D60FC0 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A462F92F2B96C09000D60FC0 /* ViewState.swift */; };
 		A4B068972B8C078D00E292DC /* MovieDetailsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B068962B8C078D00E292DC /* MovieDetailsJSON.swift */; };
 		A4B068992B8C107500E292DC /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B068982B8C107500E292DC /* MovieDetails.swift */; };
 		A4B0689B2B8D7EFB00E292DC /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B0689A2B8D7EFB00E292DC /* MovieDetailsViewModel.swift */; };
@@ -87,6 +88,7 @@
 		A462F9292B941F7200D60FC0 /* MovieDetailsSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsSkeletonView.swift; sourceTree = "<group>"; };
 		A462F92B2B954D0C00D60FC0 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		A462F92D2B954F2200D60FC0 /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		A462F92F2B96C09000D60FC0 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		A4B068952B86F6D600E292DC /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A4B068962B8C078D00E292DC /* MovieDetailsJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsJSON.swift; sourceTree = "<group>"; };
 		A4B068982B8C107500E292DC /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				A4EA34FD2B9010E000E6DD3E /* Actor.swift */,
 				A4EA34FB2B900ED100E6DD3E /* CreditsJSON.swift */,
 				A462F9192B93DEF300D60FC0 /* VideosJSON.swift */,
+				A462F92F2B96C09000D60FC0 /* ViewState.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				A462F92A2B941F7200D60FC0 /* MovieDetailsSkeletonView.swift in Sources */,
 				A4EA34FC2B900ED100E6DD3E /* CreditsJSON.swift in Sources */,
 				A4C646E32B7BC625000E0DA7 /* ScoreView.swift in Sources */,
+				A462F9302B96C09000D60FC0 /* ViewState.swift in Sources */,
 				A4B068992B8C107500E292DC /* MovieDetails.swift in Sources */,
 				A4D8DE172B7D1A7900C31D7F /* CarouselMovieView.swift in Sources */,
 				A4C646B72B74747F000E0DA7 /* TMDBApp.swift in Sources */,
