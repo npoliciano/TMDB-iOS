@@ -56,7 +56,9 @@ class MoviesAPI {
         dataTask.resume()
     }
 
-    func getTrailer(url: URL, completion: @escaping (URL?) -> Void) {
+    func getTrailer(for movieId: Int, completion: @escaping (URL?) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/videos?language=en-US")!
+
         requestDecodable(url: url) { (json: VideosJSON?) in
             guard let json else {
                 completion(nil)
@@ -75,7 +77,9 @@ class MoviesAPI {
         }
     }
 
-    func getCast(url: URL, completion: @escaping ([Actor]?) -> Void) {
+    func getCast(for movieId: Int, completion: @escaping ([Actor]?) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/credits?language=en-US")!
+
         requestDecodable(url: url) { (json: CreditsJSON?) in
             guard let json else {
                 completion(nil)
@@ -95,7 +99,9 @@ class MoviesAPI {
         }
     }
 
-    func getMovieSummary(url: URL, completion: @escaping (MovieSummary?) -> Void) {
+    func getMovieSummary(for movieId: Int, completion: @escaping (MovieSummary?) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(movieId)?language=en-US")!
+
         requestDecodable(url: url) { (json: MovieDetailsJSON?) in
             if let json {
                 let dateFormatter = DateFormatter()
@@ -131,7 +137,8 @@ class MoviesAPI {
         }
     }
 
-    func getMovies(url: URL, completion: @escaping ([Movie]?) -> Void) {
+    func getMovies(for selectedList: SelectedList, completion: @escaping ([Movie]?) -> Void) {
+        let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedList.rawValue)?language=en-US&page=1")!
         requestDecodable(url: url) { (json: MovieListJSON?) in
             if let json {
 

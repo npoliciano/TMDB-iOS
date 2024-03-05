@@ -46,8 +46,7 @@ class MovieListViewModel: ObservableObject {
     func getMovies() {
         state = .loading
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(selectedList.rawValue)?language=en-US&page=1")!
-        api.getMovies(url: url) { [weak self] movies in
+        api.getMovies(for: selectedList) { [weak self] movies in
             if let movies {
                 self?.state = .content(movies)
             } else {

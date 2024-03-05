@@ -23,8 +23,7 @@ class MoviesViewModel: ObservableObject {
     func getUpcomingMovies() {
         upcomingState = .loading
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1")!
-        api.getMovies(url: url) { [weak self] movies in
+        api.getMovies(for: .upcoming) { [weak self] movies in
             if let movies {
                 self?.upcomingState = .content(movies)
             } else {
@@ -38,8 +37,7 @@ class MoviesViewModel: ObservableObject {
     func getNowPlayingMovies() {
         nowPlayingState = .loading
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1")!
-        api.getMovies(url: url) { [weak self] movies in
+        api.getMovies(for: .nowPlaying) { [weak self] movies in
             if let movies {
                 self?.nowPlayingState = .content(movies)
             } else {
@@ -53,8 +51,7 @@ class MoviesViewModel: ObservableObject {
     func getPopularMovies() {
         popularState = .loading
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1")!
-        api.getMovies(url: url) { [weak self] movies in
+        api.getMovies(for: .popular) { [weak self] movies in
             if let movies {
                 self?.popularState = .content(movies)
             } else {
@@ -68,8 +65,7 @@ class MoviesViewModel: ObservableObject {
     func getTopRatedMovies() {
         topRatedState = .loading
 
-        let url = URL(string: "https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1")!
-        api.getMovies(url: url) { [weak self] movies in
+        api.getMovies(for: .topRated) { [weak self] movies in
             if let movies {
                 self?.topRatedState = .content(movies)
             } else {
