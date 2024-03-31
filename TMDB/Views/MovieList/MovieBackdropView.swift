@@ -39,7 +39,7 @@ struct MovieBackdropView: View {
                 Spacer()
 
                 if !isLoading {
-                    ScoreView(size: .regular, score: 7)
+                    ScoreView(size: .regular, score: movie.score)
                         .offset(x: 0, y: -35)
                 }
             }
